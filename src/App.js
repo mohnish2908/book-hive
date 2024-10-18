@@ -1,9 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Switch from 'react-router-dom';
 import Login from './pages/Login';
 import Navbar from './components/common/Navbar';
 import Signup from './pages/Signup';
 import Home from './pages/Home'; 
+import { Outlet } from 'react-router-dom';
+import About from './pages/About';
 
 function App() {
   return (
@@ -12,7 +15,9 @@ function App() {
         <Route path="/" element={<Home/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<Signup/>}/>
+        <Route path="/about" element={<About/>}/>
       </Routes>
+      
     </div>
   );
 }
