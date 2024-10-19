@@ -6,15 +6,15 @@ const Navbar = () => {
   return (
     <div className='flex h-14 items-center justify-between border-b-[1px] border-b-richblack-700 '>
       <div className='flex w-9/12 max-w-maxContent items-center justify-around translate-x-[10%]'>
-        <Link>
-          <img src={logo} alt='logo' width={160} height={42}/>
+        <Link to='/'>
+          <img src={logo} alt='logo' width={160} height={42} />
         </Link>
         
 
       <div className='flex gap-x-6 text-richblack-25'>
         <Link to="/">Home</Link>
         <Link to="/about">About Us</Link>
-        <Link to="/checkAvaibility">Search Book</Link>
+        <Link to="/searchbook">Search Book</Link>
       </div>
 
       <div className='flex gap-x-6 text-richblack-25'>

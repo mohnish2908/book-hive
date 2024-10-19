@@ -7,7 +7,7 @@ import Signup from './pages/Signup';
 import Home from './pages/Home'; 
 import { Outlet } from 'react-router-dom';
 import About from './pages/About';
-
+import SearchBook from './pages/Searchbook';
 function App() {
   return (
     <div className="w-screen min-h-screen bg-richblack-900 flex flex-col font-inter ">
@@ -16,6 +16,7 @@ function App() {
         <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/about" element={<About/>}/>
+        <Route path='/searchbook' element={<SearchBook/>}/> 
       </Routes>
       
     </div>
