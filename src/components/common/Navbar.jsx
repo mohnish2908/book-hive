@@ -9,12 +9,14 @@ const Navbar = () => {
         <Link to='/'>
           <img src={logo} alt='logo' width={160} height={42} />
         </Link>
-        
+
 
       <div className='flex gap-x-6 text-richblack-25'>
         <Link to="/">Home</Link>
         <Link to="/about">About Us</Link>
         <Link to="/searchbook">Search Book</Link>
+        <Link to="/staff">Staff</Link>
+        <Link to="/member">Member</Link>
       </div>
 
       <div className='flex gap-x-6 text-richblack-25'>

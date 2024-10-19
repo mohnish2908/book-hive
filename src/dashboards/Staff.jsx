@@ -1,8 +1,13 @@
 import React from 'react'
+import Sidebar from '../components/Sidebar'
+import Dashnavbar from '../components/Dashnavbar'
 
 const Staff = () => {
   return (
-    <div>Staff</div>
+    <div>
+        <Dashnavbar/>
+        <Sidebar/>
+    </div>
   )
 }
 
