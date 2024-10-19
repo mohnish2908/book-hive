@@ -7,12 +7,19 @@ const Searchbook = () => {
 
   const handleSearch = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/member/getBookByTitle/${bookName}`);
+      // console.log(bookName);
+      const response = await fetch(`http://localhost:8080/member/getBookByTitle/${bookName}`, {
+        method: 'GET',
+      });
       if (!response.ok) {
-        throw new Error('Book not found');
+
+        throw new Error("Book not found");
       }
+      // console.log("data is:",response);
       const data = await response.json();
-      setBook(data);
+      console.log("data is:",data.data.title);
+      console.log("data is:",data.data.publicationYear);
+      setBook(data.data);
       setError('');
     } catch (err) {
       setBook(null);
@@ -40,8 +47,9 @@ const Searchbook = () => {
       </button>
 
       {book && (
-        <div className='mt-4 p-4 border border-gray-300 rounded'>
-          <h2 className='text-xl font-bold'>{book.title}</h2>
+        <div className='mt-4 p-4 border border-gray-300 rounded text-white'>
+        
+          <h2 className='text-xl font-bold text-white'>{book.title}</h2>
           <p className='text-gray-400'>{book.language}</p>
         </div>
       )}

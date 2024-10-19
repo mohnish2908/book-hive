@@ -2,12 +2,13 @@ import React from 'react'
 import { useState } from 'react';
 import Navbar from '../components/common/Navbar';
 
-
 const SignupForm = () => {
     const [formData, setFormData] = useState({
         username: '',
         email: '',
-        password: ''
+        address: '',
+        contactNo: '',
+        gender: 'male'
     });
 
     const handleChange = (e) => {
@@ -25,7 +26,6 @@ const SignupForm = () => {
     };
 
     return (
-        
         <div className='text-white flex flex-col justify-center items-center h-screen '>
             <div className="h-1/2 w-1/3 border flex flex-col justify-center items-center">
                 <h1 className='text-3xl font-bold'>Signup</h1>
@@ -53,14 +53,38 @@ const SignupForm = () => {
                         />
                     </div>
                     <div className='mt-2'>
-                        <label htmlFor="password">Password:</label>
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            value={formData.password}
+                        <label htmlFor="gender">Gender:</label>
+                        <select
+                            id="gender"
+                            name="gender"
+                            value={formData.gender}
                             onChange={handleChange}
-                            style={{ color: 'black' , marginLeft: '20px'}}
+                            style={{ color: 'black', marginLeft: '50px' }}
+                        >
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <div className='mt-2'>
+                        <label htmlFor="address">Address:</label>
+                        <input
+                            type="text"
+                            id="address"
+                            name="address"
+                            value={formData.address}
+                            onChange={handleChange}
+                            style={{ color: 'black', marginLeft: '30px' }}
+                        />
+                    </div>
+                    <div className='mt-2'>
+                        <label htmlFor="contactNo">Contact No:</label>
+                        <input
+                            type="text"
+                            id="contactNo"
+                            name="contactNo"
+                            value={formData.contactNo}
+                            onChange={handleChange}
+                            style={{ color: 'black', marginLeft: '10px' }}
                         />
                     </div>
                     <button type="submit" className='mt-7 translate-x-[140%] bg-richblack-500 text-black px-4 py-1'>Signup</button>
@@ -73,14 +97,11 @@ const SignupForm = () => {
     );
 };
 
-
-
 export const Signup = () => {
     return (
         <div>
             <Navbar />
             <SignupForm />
-            
         </div>
     );
 };
