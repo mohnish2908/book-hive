@@ -1,12 +1,12 @@
 import React from 'react'
-import Sidebar from '../components/Sidebar'
+import Membersidebar from '../components/Membersidebar'
 import Dashnavbar from '../components/Dashnavbar'
 
 const Members = () => {
   return (
     <div>
         <Dashnavbar/>
-        <Sidebar/>
+        <Membersidebar/>
     </div>
   )
 }

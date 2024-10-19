@@ -1,12 +1,12 @@
 import React from 'react'
-import Sidebar from '../components/Sidebar'
+import Staffsidebar from '../components/Staffsidebar'
 import Dashnavbar from '../components/Dashnavbar'
 
 const Staff = () => {
   return (
     <div>
         <Dashnavbar/>
-        <Sidebar/>
+        <Staffsidebar/>
     </div>
   )
 }
