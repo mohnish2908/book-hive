@@ -3,12 +3,18 @@ import { UserPlus, BookOpen, UserCheck, Book, BookOpenCheck, Users, Edit, Menu }
 import { cn } from "../lib/utils"
 import { Button } from "./ui/Button"
 import logo from "../assets/logo.jpg"
+import { useNavigate } from "react-router-dom"
 
 export default function Adminsidebar() {
     const [collapsed, setCollapsed] = useState(false)
+    const navigate = useNavigate()
 
     const toggleSidebar = () => {
         setCollapsed(!collapsed)
+    }
+
+    const handleNavItemClick = (link) => {
+        navigate(link)
     }
 
     return (
@@ -23,15 +29,15 @@ export default function Adminsidebar() {
                         <Menu className="h-6 w-6 text-white" />
                     </Button>
                 </div>
-                <nav className="flex-1 overflow-y-auto bg-gray-800">
+                <nav className="flex-1 overflow-y-auto bg-blue-900">
                     <ul className="p-2 space-y-2">
-                        <NavItem icon={UserPlus} label="Add Member" collapsed={collapsed} link="/add-member" />
-                        <NavItem icon={BookOpen} label="Add Book" collapsed={collapsed} link="/add-book" />
-                        <NavItem icon={UserCheck} label="Add Admin" collapsed={collapsed} link="/add-admin" />
-                        <NavItem icon={Book} label="Issue Book" collapsed={collapsed} link="/issue-book" />
-                        <NavItem icon={BookOpenCheck} label="Return Book" collapsed={collapsed} link="/return-book" />
-                        <NavItem icon={Users} label="Get All Members" collapsed={collapsed} link="/get-all-members" />
-                        <NavItem icon={Edit} label="Edit Member Details" collapsed={collapsed} link="/edit-member-details" />
+                        <NavItem icon={UserPlus} label="Add Member" collapsed={collapsed} link="/admin/addmember" onClick={handleNavItemClick} />
+                        <NavItem icon={BookOpen} label="Add Book" collapsed={collapsed} link="/admin/addbook" onClick={handleNavItemClick} />
+                        <NavItem icon={UserCheck} label="Add Admin" collapsed={collapsed} link="/admin/addadmin" onClick={handleNavItemClick} />
+                        <NavItem icon={Book} label="Issue Book" collapsed={collapsed} link="/admin/issuebook" onClick={handleNavItemClick} />
+                        <NavItem icon={BookOpenCheck} label="Return Book" collapsed={collapsed} link="/admin/returnbook" onClick={handleNavItemClick} />
+                        <NavItem icon={Users} label="Get All Members" collapsed={collapsed} link="/admin/getallmembers" onClick={handleNavItemClick} />
+                        <NavItem icon={Edit} label="Edit Member Details" collapsed={collapsed} link="/admin/editmemberdetails" onClick={handleNavItemClick} />
                     </ul>
                 </nav>
             </div>
@@ -39,7 +45,7 @@ export default function Adminsidebar() {
     )
 }
 
-function NavItem({ icon: Icon, label, collapsed }) {
+function NavItem({ icon: Icon, label, collapsed, link, onClick }) {
     return (
         <li>
             <Button
@@ -48,6 +54,7 @@ function NavItem({ icon: Icon, label, collapsed }) {
                     "w-full text-white text-sm hover:bg-gray-700",
                     collapsed ? "px-4" : "px-5"
                 )}
+                onClick={() => onClick(link)}
             >
                 <Icon className="h-4 w-4 text-white" />
                 {!collapsed && <span className="ml-2">{label}</span>}
