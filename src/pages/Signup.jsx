@@ -4,7 +4,7 @@ import Navbar from '../components/common/Navbar';
 
 const SignupForm = () => {
     const [formData, setFormData] = useState({
-        username: '',
+        name: '',
         email: '',
         address: '',
         contactNo: '',
@@ -21,13 +21,30 @@ const SignupForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            const response = await axios.post('/newMember/create', formData);
-            console.log(response.data);
-        } catch (error) {
-            console.error('There was an error!', error);
+        // try {
+        //     const response = await axios.post('/newMember/create', formData);
+        //     console.log(response.data);
+        // } catch (error) {
+        //     console.error('There was an error!', error);
 
-        }
+        // }
+        let response;
+      try {
+        console.log(formData);
+        
+        response = await fetch(`http://localhost:8080/newMember/create`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        
+          body: JSON.stringify(formData),
+        });
+        console.log(response);
+      } catch (networkError) {
+        console.error('Network error:', networkError);
+        return;
+      }
     };
 
     return (
@@ -36,12 +53,12 @@ const SignupForm = () => {
                 <h1 className='text-3xl font-bold'>Signup</h1>
                 <form onSubmit={handleSubmit}>
                     <div className='mt-7'>
-                        <label htmlFor="username">Username:</label>
+                        <label htmlFor="name">Username:</label>
                         <input
                             type="text"
-                            id="username"
-                            name="username"
-                            value={formData.username}
+                            id="name"
+                            name="name"
+                            value={formData.name}
                             onChange={handleChange}
                             style={{ color: 'black', marginLeft: '15px' }}
                         />

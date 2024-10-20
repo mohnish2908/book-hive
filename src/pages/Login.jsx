@@ -3,51 +3,51 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../components/common/Navbar';
 
 const Login = () => {
-  const [username, setUsername] = useState('');
+  const [email, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('member');
   const navigate = useNavigate();
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     let response;
-  //     try {
-  //       response = await fetch(`http://localhost:8080/${role}/login`, {
-  //         method: 'POST',
-  //         headers: {
-  //           'Content-Type': 'application/json',
-  //         },
-  //         body: JSON.stringify({ username, password }),
-  //       });
-  //     } catch (networkError) {
-  //       console.error('Network error:', networkError);
-  //       return;
-  //     }
-  //     console.log(response);
-  //     if (response.ok) {
-  //       const data = await response.json();
-  //       console.log(data);
-  //       if (data.role === 'admin') {
-  //         navigate('/admin');
-  //       } else if (data.role === 'member') {
-  //         navigate('/member');
-  //       }
-  //     } else {
-  //       console.error('Login failed');
-  //     }
-  //   } catch (error) {
-  //     console.error('Error:', error);
-  //   }
-  // };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(username,password,role);
-    if(role=='member')navigate('/member');
-    else navigate('/admin');
+    try {
+      let response;
+      try {
+        response = await fetch(`http://localhost:8080/${role}/login`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, password }),
+        });
+      } catch (networkError) {
+        console.error('Network error:', networkError);
+        return;
+      }
+      console.log(response);
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        if (role === 'admin') {
+          navigate('/admin');
+        } else if (role === 'member') {
+          navigate('/member');
+        }
+      } else {
+        console.error('Login failed');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
-  }
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log(username,password,role);
+  //   if(role=='member')navigate('/member');
+  //   else navigate('/admin');
+
+  // }
 
   return (
     <div>
@@ -57,11 +57,11 @@ const Login = () => {
           <h1 className='text-3xl font-bold'>Login</h1>
           <form onSubmit={handleSubmit}>
             <div className='mt-7'>
-              <label htmlFor="username">Username:</label>
+              <label htmlFor="email">Username:</label>
               <input
                 type="text"
-                id="username"
-                value={username}
+                id="email"
+                value={email}
                 onChange={(e) => setUsername(e.target.value)}
                 style={{ color: 'black', marginLeft: '20px' }}
               />
