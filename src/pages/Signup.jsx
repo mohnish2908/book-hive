@@ -1,5 +1,5 @@
-import React from 'react'
-import { useState } from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import Navbar from '../components/common/Navbar';
 
 const SignupForm = () => {
@@ -19,14 +19,19 @@ const SignupForm = () => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Handle form submission logic here
-        console.log(formData);
+        try {
+            const response = await axios.post('/newMember/create', formData);
+            console.log(response.data);
+        } catch (error) {
+            console.error('There was an error!', error);
+
+        }
     };
 
     return (
-        <div className='text-white flex flex-col justify-center items-center h-screen '>
+        <div className='text-white flex flex-col justify-center items-center h-screen'>
             <div className="h-1/2 w-1/3 border flex flex-col justify-center items-center">
                 <h1 className='text-3xl font-bold'>Signup</h1>
                 <form onSubmit={handleSubmit}>

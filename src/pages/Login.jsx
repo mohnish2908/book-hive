@@ -8,38 +8,46 @@ const Login = () => {
   const [role, setRole] = useState('member');
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     let response;
+  //     try {
+  //       response = await fetch(`http://localhost:8080/${role}/login`, {
+  //         method: 'POST',
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //         },
+  //         body: JSON.stringify({ username, password }),
+  //       });
+  //     } catch (networkError) {
+  //       console.error('Network error:', networkError);
+  //       return;
+  //     }
+  //     console.log(response);
+  //     if (response.ok) {
+  //       const data = await response.json();
+  //       console.log(data);
+  //       if (data.role === 'admin') {
+  //         navigate('/admin');
+  //       } else if (data.role === 'member') {
+  //         navigate('/member');
+  //       }
+  //     } else {
+  //       console.error('Login failed');
+  //     }
+  //   } catch (error) {
+  //     console.error('Error:', error);
+  //   }
+  // };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      let response;
-      try {
-        response = await fetch(`http://localhost:8080/${role}/login`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ username, password }),
-        });
-      } catch (networkError) {
-        console.error('Network error:', networkError);
-        return;
-      }
-      console.log(response);
-      if (response.ok) {
-        const data = await response.json();
-        console.log(data);
-        if (data.role === 'admin') {
-          navigate('/admin');
-        } else if (data.role === 'member') {
-          navigate('/member');
-        }
-      } else {
-        console.error('Login failed');
-      }
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
+    console.log(username,password,role);
+    if(role=='member')navigate('/member');
+    else navigate('/admin');
+
+  }
 
   return (
     <div>

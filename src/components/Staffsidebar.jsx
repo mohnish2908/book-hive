@@ -25,13 +25,13 @@ export default function Staffsidebar() {
                 </div>
                 <nav className="flex-1 overflow-y-auto bg-gray-800">
                     <ul className="p-2 space-y-2">
-                        <NavItem icon={UserPlus} label="Add Member" collapsed={collapsed} />
-                        <NavItem icon={BookOpen} label="Add Book" collapsed={collapsed} />
-                        <NavItem icon={UserCheck} label="Add Admin" collapsed={collapsed} />
-                        <NavItem icon={Book} label="Issue Book" collapsed={collapsed} />
-                        <NavItem icon={BookOpenCheck} label="Return Book" collapsed={collapsed} />
-                        <NavItem icon={Users} label="Get All Members" collapsed={collapsed} />
-                        <NavItem icon={Edit} label="Edit Member Details" collapsed={collapsed} />
+                        <NavItem icon={UserPlus} label="Add Member" collapsed={collapsed} link="/add-member" />
+                        <NavItem icon={BookOpen} label="Add Book" collapsed={collapsed} link="/add-book" />
+                        <NavItem icon={UserCheck} label="Add Admin" collapsed={collapsed} link="/add-admin" />
+                        <NavItem icon={Book} label="Issue Book" collapsed={collapsed} link="/issue-book" />
+                        <NavItem icon={BookOpenCheck} label="Return Book" collapsed={collapsed} link="/return-book" />
+                        <NavItem icon={Users} label="Get All Members" collapsed={collapsed} link="/get-all-members" />
+                        <NavItem icon={Edit} label="Edit Member Details" collapsed={collapsed} link="/edit-member-details" />
                     </ul>
                 </nav>
             </div>
