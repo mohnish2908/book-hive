@@ -1,14 +1,14 @@
 import React from 'react'
-import Staffsidebar from '../components/Staffsidebar'
+import Adminsidebar from '../components/Adminsidebar'
 import Dashnavbar from '../components/Dashnavbar'
 
-const Staff = () => {
+const Admin = () => {
   return (
     <div>
         <Dashnavbar/>
-        <Staffsidebar/>
+        <Adminsidebar/>
     </div>
   )
 }
 
-export default Staff
+export default Admin

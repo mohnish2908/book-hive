@@ -6,7 +6,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import SearchBook from './pages/Searchbook';
 import Members from './dashboards/Members';
-import Staff from './dashboards/Staff';
+import Admin from './dashboards/Admin';
 
 function App() {
   return (
@@ -17,8 +17,6 @@ function App() {
         <Route path="/signup" element={<Signup/>}/>
         <Route path="/about" element={<About/>}/>
         <Route path='/searchbook' element={<SearchBook/>}/>
-        <Route path='/staff' element={<Staff/>}/>
-        <Route path='/member' element={<Members/>}/>
       </Routes>
 
     </div>
