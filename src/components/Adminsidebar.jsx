@@ -4,7 +4,7 @@ import { cn } from "../lib/utils"
 import { Button } from "./ui/Button"
 import logo from "../assets/logo.jpg"
 
-export default function Staffsidebar() {
+export default function Adminsidebar() {
     const [collapsed, setCollapsed] = useState(false)
 
     const toggleSidebar = () => {
