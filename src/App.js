@@ -19,7 +19,7 @@ import Myprofile from './dashboards/Membersidebarpages/Myprofile';
 import Searchbooks from './dashboards/Membersidebarpages/Searchbooks';
 import Requestedbooks from './dashboards/Membersidebarpages/Requestedbooks';
 import Returnedbooks from './dashboards/Membersidebarpages/Returnedbooks';
-
+import Addpublisher from './dashboards/Adminsidebarpages/Addpublisher';
 
 function App() {
   return (
@@ -44,6 +44,8 @@ function App() {
         <Route path='/member/searchbooks' element={<Searchbooks/>}/>
         <Route path='/member/requestedbooks' element={<Requestedbooks/>}/>
         <Route path='/member/returnedbooks' element={<Returnedbooks/>}/>
+        <Route path='/admin/addpublisher' element={<Addpublisher/>}/>
+
       </Routes>
     </div>
   );

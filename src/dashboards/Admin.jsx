@@ -7,7 +7,7 @@ const Admin = () => {
   const { data } = location.state || {};
 
   return (
-    <div className='flex flex-row min-h-screen bg-gray-900 text-white'>
+    <div className='flex flex-row min-h-screen bg-gray-900 text-white overflow-hidden'>
       <div className='w-1/4'>
         <Adminsidebar data={data} />
       </div>

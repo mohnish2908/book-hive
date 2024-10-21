@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { UserPlus, BookOpen, UserCheck, Book, BookOpenCheck, Users, Edit, Menu } from "lucide-react"
+import { UserPlus, BookOpen, UserCheck, Book, BookOpenCheck, Users, Edit, Menu, UserRoundPen} from "lucide-react"
 import { cn } from "../lib/utils"
 import { Button } from "./ui/Button"
 import logo from "../assets/logo.jpg"
@@ -10,7 +10,7 @@ export default function Adminsidebar() {
     const navigate = useNavigate()
     const location = useLocation();
     const { data } = location.state || {};
-    
+
     console.log(data);
     const toggleSidebar = () => {
         setCollapsed(!collapsed)
@@ -41,6 +41,7 @@ export default function Adminsidebar() {
                         <NavItem icon={BookOpenCheck} label="Return Book" collapsed={collapsed} link="/admin/returnbook" onClick={handleNavItemClick} />
                         <NavItem icon={Users} label="Get All Members" collapsed={collapsed} link="/admin/getallmembers" onClick={handleNavItemClick} />
                         <NavItem icon={Edit} label="Edit Member Details" collapsed={collapsed} link="/admin/editmemberdetails" onClick={handleNavItemClick} />
+                        <NavItem icon={UserRoundPen} label="Add Publisher" collapsed={collapsed} link="/admin/addpublisher" onClick={handleNavItemClick} />
                     </ul>
                 </nav>
             </div>
