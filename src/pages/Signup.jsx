@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import Navbar from '../components/common/Navbar';
 
 const SignupForm = () => {
@@ -32,13 +32,13 @@ const SignupForm = () => {
         let response;
       try {
         console.log(formData);
-        
+
         response = await fetch(`http://localhost:8080/newMember/create`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-        
+
           body: JSON.stringify(formData),
         });
         const d=await response.json();
