@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Adminsidebar from '../../components/Adminsidebar';
 import { useLocation } from 'react-router-dom';
 
-const Addmember = ({ adminId }) => {
+const Addmember = () => {
   const [members, setMembers] = useState([]);
   const location = useLocation();
   const { data } = location.state || {};
