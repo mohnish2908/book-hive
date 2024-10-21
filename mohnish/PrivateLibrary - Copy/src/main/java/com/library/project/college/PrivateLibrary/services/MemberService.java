@@ -91,7 +91,7 @@ public class MemberService {
         String body = String.format(
                  "Dear member,"+
 
-                 "your OTP for Password Reset is" +otp+ "please don not share this otp with anyone."+
+                 "your OTP for Password Reset is " +otp+ " please don not share this otp with anyone."+
                  "thank you");
         emailService.sendMail(email,subject,body);
         return  ResponseDTO.builder()

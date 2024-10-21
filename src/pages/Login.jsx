@@ -7,6 +7,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('member');
   const navigate = useNavigate();
+  const [e, sete] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,30 +25,21 @@ const Login = () => {
         console.error('Network error:', networkError);
         return;
       }
-      console.log(response);
-      if (response.ok) {
-        const data = await response.json();
-        console.log(data);
+      const d = await response.json();
+      console.log(d);
+      if (d.data !== null) {
         if (role === 'admin') {
-          navigate('/admin');
+          navigate('/admin', { state: { data: d.data } });
         } else if (role === 'member') {
-          navigate('/member');
+          navigate('/member', { state: { data: d.data } });
         }
       } else {
-        console.error('Login failed');
+        sete(d.error.message);
       }
     } catch (error) {
       console.error('Error:', error);
     }
   };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   console.log(username,password,role);
-  //   if(role=='member')navigate('/member');
-  //   else navigate('/admin');
-
-  // }
 
   return (
     <div>
@@ -57,13 +49,13 @@ const Login = () => {
           <h1 className='text-3xl font-bold'>Login</h1>
           <form onSubmit={handleSubmit}>
             <div className='mt-7'>
-              <label htmlFor="email">Username:</label>
+              <label htmlFor="email">Email:</label>
               <input
-                type="text"
+                type="email"
                 id="email"
                 value={email}
                 onChange={(e) => setUsername(e.target.value)}
-                style={{ color: 'black', marginLeft: '20px' }}
+                style={{ color: 'black', marginLeft: '53px' }}
               />
             </div>
             <div className='mt-2'>
@@ -90,6 +82,9 @@ const Login = () => {
             </div>
             <button type="submit" className='mt-7 translate-x-[150%] bg-richblack-500 text-black px-4 py-1'>Login</button>
           </form>
+          <div className='text-red mt-3'>
+            <p className="text-red-500">{e}</p>
+          </div>
           <div className="mt-4 text-center">
             <p>Not a member? <a href="/signup" className="text-blue-500">Signup</a></p>
           </div>

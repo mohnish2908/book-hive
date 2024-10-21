@@ -11,15 +11,15 @@ const Searchbook = () => {
       const response = await fetch(`http://localhost:8080/member/getBookByTitle/${bookName}`, {
         method: 'GET',
       });
-      if (!response.ok) {
+      const d=await response.json();
+      console.log(d);
 
-        throw new Error("Book not found");
+      if (d.data === null) {
+        throw new Error(d.error.message);
       }
-      // console.log("data is:",response);
-      const data = await response.json();
-      console.log("data is:",data.data.title);
-      console.log("data is:",data.data.publicationYear);
-      setBook(data.data);
+      console.log("data is:",d.data.title);
+      console.log("data is:",d.data.publicationYear);
+      setBook(d.data);
       setError('');
     } catch (err) {
       setBook(null);

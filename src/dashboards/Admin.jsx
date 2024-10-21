@@ -1,12 +1,19 @@
-import React from 'react'
-import Adminsidebar from '../components/Adminsidebar'
+import React from 'react';
+import { useLocation } from 'react-router-dom';
+import Adminsidebar from '../components/Adminsidebar';
 
 const Admin = () => {
-  return (
-    <div>
-        <Adminsidebar/>
-    </div>
-  )
-}
+  const location = useLocation();
+  const { data } = location.state || {};
 
-export default Admin
+  return (
+    <div className='flex flex-row text-white'>
+      <Adminsidebar data={data} />
+      <div>
+        <h1>Welcome, {data?.name}</h1>
+      </div>
+    </div>
+  );
+};
+
+export default Admin;

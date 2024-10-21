@@ -66,6 +66,7 @@ public class AdminController {
 
     @PostMapping("/{adminId}/approveMember/{registrationId}")
     public ResponseEntity<ResponseDTO> approveMemberRequest(@PathVariable String registrationId , @PathVariable Long adminId){
+        System.out.print("i m here");
        ResponseDTO approvedMember = memberRegistrationService.approvedMemberRequests(registrationId,adminId);
        return ResponseEntity.ok(approvedMember);
     }

@@ -83,7 +83,7 @@ public class MemberRegistrationService {
         MemberDTO memberDTO = convertToMemberDTO(requestMember);
 
         memberDTO.setAdminId(adminId);
-        memberDTO.setPassword("abcdefgh");
+        memberDTO.setPassword("1234");
         memberDTO.setIsActive(true);
         MemberEntity newMember = modelMapper.map(memberDTO,MemberEntity.class);
         memberRepository.save(newMember);
@@ -104,7 +104,7 @@ public class MemberRegistrationService {
                     "Member ID: "+memberId+
                     "Password: " +password+
 
-                    "If you have any questions, feel free to contact us."+
+                    " If you have any questions, feel free to contact us."+
 
                     "Best regards,"+
                     " Prashant verma";

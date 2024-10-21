@@ -10,6 +10,7 @@ const SignupForm = () => {
         contactNo: '',
         gender: 'male'
     });
+    const [con,setcon]=useState('');
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -40,7 +41,16 @@ const SignupForm = () => {
         
           body: JSON.stringify(formData),
         });
-        console.log(response);
+        const d=await response.json();
+        console.log(d);
+        if(d.data===null){
+          setcon(d.error.message);
+        }
+        else{
+            setcon('User registered successfully'+d.data.registrationId);
+        }
+        // const data = await response.json();
+
       } catch (networkError) {
         console.error('Network error:', networkError);
         return;
@@ -48,8 +58,8 @@ const SignupForm = () => {
     };
 
     return (
-        <div className='text-white flex flex-col justify-center items-center h-screen'>
-            <div className="h-1/2 w-1/3 border flex flex-col justify-center items-center">
+        <div className='text-white flex flex-col justify-center items-center h-screen '>
+            <div className="h-1/2 w-1/3 border flex flex-col justify-center items-center ">
                 <h1 className='text-3xl font-bold'>Signup</h1>
                 <form onSubmit={handleSubmit}>
                     <div className='mt-7'>
@@ -109,7 +119,10 @@ const SignupForm = () => {
                             style={{ color: 'black', marginLeft: '10px' }}
                         />
                     </div>
-                    <button type="submit" className='mt-7 translate-x-[140%] bg-richblack-500 text-black px-4 py-1'>Signup</button>
+                    <div className='mt-4 mx-5 text-center'>
+                        <p>{con}</p>
+                    </div>
+                    <button type="submit" className='mt-3 translate-x-[140%] bg-richblack-500 text-black px-4 py-1'>Signup</button>
                 </form>
                 <div className="mt-4 text-center">
                     <p>Already a member? <a href="/login" className="text-blue-500">Login</a></p>

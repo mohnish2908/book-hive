@@ -4,17 +4,20 @@ import { cn } from "../lib/utils"
 import { Button } from "./ui/Button"
 import logo from "../assets/logo.jpg"
 import { useNavigate } from "react-router-dom"
-
+import { useLocation } from "react-router-dom"
 export default function Adminsidebar() {
     const [collapsed, setCollapsed] = useState(false)
     const navigate = useNavigate()
-
+    const location = useLocation();
+    const { data } = location.state || {};
+    
+    console.log(data);
     const toggleSidebar = () => {
         setCollapsed(!collapsed)
     }
 
     const handleNavItemClick = (link) => {
-        navigate(link)
+        navigate(link,{ state: { data: data } })
     }
 
     return (
