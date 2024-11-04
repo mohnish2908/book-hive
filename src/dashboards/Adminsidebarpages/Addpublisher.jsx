@@ -162,16 +162,18 @@ const Addpublisher = () => {
             {showPublishers ? 'Hide All Publishers' : 'Show All Publishers'}
         </button>
         {showPublishers && (
-            <div>
-            <ul>
+          <div className='mt-4'>
+              <ul className='space-y-4'>
                 {publishers.map((publisher) => (
-                <li key={publisher.id} className='mt-2'>
-                    {publisher.name} ({publisher.email}) - {publisher.address}
-                    <button onClick={() => handleDelete(publisher.id)} className='ml-4 text-red-500'>
-                    </button>
-                </li>
+                  <li key={publisher.id} className='bg-gray-800 p-4 rounded-md shadow-md'>
+                    <div className="flex flex-col space-y-2">
+                      <p className='text-lg font-semibold'>{publisher.name}</p>
+                      <p className='text-sm text-gray-400'>({publisher.email})</p>
+                      <p className='text-sm text-gray-400'>{publisher.address}</p>
+                    </div>
+                  </li>
                 ))}
-            </ul>
+              </ul>
             </div>
         )}
         </div>
