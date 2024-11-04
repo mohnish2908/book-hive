@@ -23,9 +23,10 @@ const Addpublisher = () => {
     try {
       const response = await fetch('http://localhost:8080/admin/getAllPublisher');
       const data = await response.json();
-      setPublishers(Array.isArray(data) ? data : []);
+    //   console.log('Fetched publishers:', data);
+      setPublishers(Array.isArray(data.data) ? data.data : []);
     } catch (error) {
-      console.error('Error fetching publishers:', error);
+      console.error('Error fetching all publishers:', error);
       setPublishers([]);
     }
   };
@@ -151,25 +152,31 @@ const Addpublisher = () => {
           </div>
           <button type='submit' className='btn btn-primary bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-md'>Submit</button>
         </form>
+
+        {/* get all publishers */}
         <div className='mt-8'>
-          <button onClick={togglePublishersList} className='btn btn-primary bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md'>
-            {showPublishers ? 'Hide Publishers' : 'Show Publishers'}
-          </button>
-          {showPublishers && (
+        <button
+            onClick={togglePublishersList}
+            className='btn btn-primary bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md'
+        >
+            {showPublishers ? 'Hide All Publishers' : 'Show All Publishers'}
+        </button>
+        {showPublishers && (
             <div>
-              <ul>
+            <ul>
                 {publishers.map((publisher) => (
-                  <li key={publisher.id} className='mt-2'>
+                <li key={publisher.id} className='mt-2'>
                     {publisher.name} ({publisher.email}) - {publisher.address}
                     <button onClick={() => handleDelete(publisher.id)} className='ml-4 text-red-500'>
-                      Delete
                     </button>
-                  </li>
+                </li>
                 ))}
-              </ul>
+            </ul>
             </div>
-          )}
+        )}
         </div>
+
+        {/* get/delete publisher by ID */}
         <div className='mt-8'>
           <h3 className='text-xl font-bold mb-4'>Get/Delete Publisher by ID</h3>
           <div className='form-group'>
