@@ -1,24 +1,29 @@
-import React, { useState } from "react"
-import { UserPlus, BookOpen, UserCheck, Book, BookOpenCheck, Users, Edit, Menu, UserRoundPen} from "lucide-react"
-import { cn } from "../lib/utils"
-import { Button } from "./ui/Button"
-import logo from "../assets/logo.jpg"
-import { useNavigate } from "react-router-dom"
-import { useLocation } from "react-router-dom"
-export default function Adminsidebar() {
-    const [collapsed, setCollapsed] = useState(false)
-    const navigate = useNavigate()
+import React, { useState } from "react";
+import { UserPlus, BookOpen, UserCheck, Book, BookOpenCheck, Users, Edit, Menu, UserRoundPen, LogOut } from "lucide-react";
+import { cn } from "../lib/utils";
+import { Button } from "./ui/Button";
+import logo from "../assets/logo.jpg";
+import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+
+export default function AdminSidebar() {
+    const [collapsed, setCollapsed] = useState(false);
+    const navigate = useNavigate();
     const location = useLocation();
     const { data } = location.state || {};
 
-    console.log(data);
     const toggleSidebar = () => {
-        setCollapsed(!collapsed)
-    }
+        setCollapsed(!collapsed);
+    };
 
     const handleNavItemClick = (link) => {
-        navigate(link,{ state: { data: data } })
-    }
+        if (link === '/') {
+            // For the logout link, use replace to clear history
+            navigate(link, { replace: true });
+        } else {
+            navigate(link, { state: { data: data } });
+        }
+    };
 
     return (
         <div className={cn(
@@ -43,27 +48,27 @@ export default function Adminsidebar() {
                         <NavItem icon={Edit} label="Edit Member Details" collapsed={collapsed} link="/admin/editmemberdetails" onClick={handleNavItemClick} />
                         <NavItem icon={UserRoundPen} label="Add Publisher" collapsed={collapsed} link="/admin/addpublisher" onClick={handleNavItemClick} />
                         <NavItem icon={BookOpen} label="Request Issue" collapsed={collapsed} link="/admin/requestissue" onClick={handleNavItemClick} />
+                        <NavItem icon={LogOut} label="Logout" collapsed={collapsed} link="/" onClick={handleNavItemClick} />
                     </ul>
                 </nav>
             </div>
         </div>
-    )
+    );
 }
 
 function NavItem({ icon: Icon, label, collapsed, link, onClick }) {
     return (
-        <li>
-            <Button
-                variant="ghost"
+        <li className="hover:bg-gray-700 rounded-md">
+            <button
                 className={cn(
-                    "w-full text-white text-sm hover:bg-gray-700",
-                    collapsed ? "px-4" : "px-5"
+                    "flex items-center w-full text-white text-sm px-4 py-2 focus:outline-none",
+                    collapsed ? "justify-center" : "justify-start"
                 )}
                 onClick={() => onClick(link)}
             >
-                <Icon className="h-4 w-4 text-white" />
-                {!collapsed && <span className="ml-2">{label}</span>}
-            </Button>
+                <Icon className="h-5 w-5" />
+                {!collapsed && <span className="ml-3">{label}</span>}
+            </button>
         </li>
-    )
+    );
 }
