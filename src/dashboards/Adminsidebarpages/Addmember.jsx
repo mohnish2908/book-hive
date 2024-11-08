@@ -40,7 +40,7 @@ const Addmember = () => {
 
   const handleReject = async (registrationId) => {
     try {
-      console.log(registrationId,data.adminId);
+      console.log(registrationId, data.adminId);
       const response = await fetch(`http://localhost:8080/admin/rejectMember/${registrationId}`, {
         method: 'DELETE',
         body: null,
@@ -64,8 +64,8 @@ const Addmember = () => {
         <Adminsidebar />
       </div>
       <div className='w-3/4 p-8'>
-        <button 
-          onClick={fetchMembers} 
+        <button
+          onClick={fetchMembers}
           className='mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 translate-x-[300%]'
         >
           Fetch Members
@@ -87,14 +87,14 @@ const Addmember = () => {
                   <td className='py-2 px-4 border-b border-gray-700'>{member.name}</td>
                   <td className='py-2 px-4 border-b border-gray-700'>{member.email}</td>
                   <td className='py-2 px-4 border-b border-gray-700'>
-                    <button 
-                      onClick={() => handleApprove(member.registrationId)} 
+                    <button
+                      onClick={() => handleApprove(member.registrationId)}
                       className='mr-2 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700 border'
                     >
                       Approve
                     </button>
-                    <button 
-                      onClick={() => handleReject(member.registrationId)} 
+                    <button
+                      onClick={() => handleReject(member.registrationId)}
                       className='px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700 border'
                     >
                       Reject
