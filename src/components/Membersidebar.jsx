@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import { User, Search, Book, BookOpen, BookOpenCheck, Menu, LogOut } from "lucide-react";
+import { Search, Book, BookOpen, BookOpenCheck, Menu, LogOut } from "lucide-react";
 import { cn } from "../lib/utils";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.jpg";
 import { useLocation } from "react-router-dom";
 
-export default function MemberSidebar({data}) {
+export default function MemberSidebar() {
     const [collapsed, setCollapsed] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
-    const locationData = location.state?.data;
+    const { data } = location.state || {};
 
     const toggleSidebar = () => {
         setCollapsed(!collapsed);
@@ -38,13 +38,11 @@ export default function MemberSidebar({data}) {
                 </div>
                 <nav className="flex-1 overflow-y-auto bg-blue-900">
                     <ul className="p-2 space-y-2">
-                        {/* <NavItem icon={User} label="My Profile" collapsed={collapsed} path="/member" /> */}
-                        <NavItem icon={Search} label="Search Book" collapsed={collapsed} path="/member/searchbook" />
-                        <NavItem icon={Book} label="Requested Book" collapsed={collapsed} path="/member/requestedbooks" />
-                        <NavItem icon={BookOpen} label="Issued Books" collapsed={collapsed} path="/member/issuedbooks" />
-                        <NavItem icon={BookOpenCheck} label="Returned Books" collapsed={collapsed} path="/member/returnedbooks" />
+                        <NavItem icon={Search} label="Search Book" collapsed={collapsed} link="/member/searchbook" onClick={handleNavItemClick} />
+                        <NavItem icon={Book} label="Requested Book" collapsed={collapsed} link="/member/requestedbooks" onClick={handleNavItemClick} />
+                        <NavItem icon={BookOpen} label="Issued Books" collapsed={collapsed} link="/member/issuedbooks" onClick={handleNavItemClick} />
+                        <NavItem icon={BookOpenCheck} label="Returned Books" collapsed={collapsed} link="/member/returnedbooks" onClick={handleNavItemClick} />
                         <NavItem icon={LogOut} label="Logout" collapsed={collapsed} link="/" onClick={handleNavItemClick} />
-
                     </ul>
                 </nav>
             </div>
@@ -52,9 +50,7 @@ export default function MemberSidebar({data}) {
     );
 }
 
-function NavItem({ icon: Icon, label, collapsed, path }) {
-    const navigate = useNavigate();
-
+function NavItem({ icon: Icon, label, collapsed, link, onClick }) {
     return (
         <li className="hover:bg-gray-700 rounded-md">
             <button
@@ -62,7 +58,7 @@ function NavItem({ icon: Icon, label, collapsed, path }) {
                     "flex items-center w-full text-white text-sm px-4 py-2 focus:outline-none",
                     collapsed ? "justify-center" : "justify-start"
                 )}
-                onClick={() => navigate(path)}
+                onClick={() => onClick(link)}
             >
                 <Icon className="h-5 w-5" />
                 {!collapsed && <span className="ml-3">{label}</span>}
