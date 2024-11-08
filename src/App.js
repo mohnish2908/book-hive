@@ -42,7 +42,7 @@ function App() {
         <Route path='/admin/returnbook' element={<Returnbook/>}/>
         <Route path='/member/issuedbooks' element={<Issuedbooks/>}/>
         {/* <Route path='/member/myprofile' element={<Myprofile/>}/> */}
-        <Route path='/member/searchbooks' element={<Searchbooks/>}/>
+        <Route path='/member/searchbook' element={<Searchbooks/>}/>
         <Route path='/member/requestedbooks' element={<Requestedbooks/>}/>
         <Route path='/member/returnedbooks' element={<Returnedbooks/>}/>
         <Route path='/admin/addpublisher' element={<Addpublisher/>}/>

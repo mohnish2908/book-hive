@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Membersidebar from '../../components/Membersidebar'
+ 
 const Searchbooks = () => {
   
     const [bookName, setBookName] = useState('');
@@ -33,16 +34,16 @@ const Searchbooks = () => {
 
   return (
     
-    <div> 
-    <Membersidebar/>
-      <div className='text-white flex flex-col justify-center items-center p-4'>
-      
+    <div className="flex flex-row"> 
+    <Membersidebar />
+      <div className='text-white flex flex-col justify-center items-center p-4 translate-x-[200%] '>
+      <label className="text-3xl">Search Book</label>
       <input
         type='text'
         value={bookName}
         onChange={(e) => setBookName(e.target.value)}
         placeholder='Enter book name'
-        className='text-black p-2 rounded border border-gray-300 mb-4'
+        className='text-black p-2 rounded border border-gray-300 mb-4 mt-4'
       />
       <button 
         onClick={handleSearch} 
