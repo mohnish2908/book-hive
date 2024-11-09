@@ -5,8 +5,7 @@ import { Button } from "./ui/Button";
 import logo from "../assets/logo.jpg";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 export default function AdminSidebar() {
     const [collapsed, setCollapsed] = useState(false);
@@ -55,7 +54,6 @@ export default function AdminSidebar() {
                     </ul>
                 </nav>
             </div>
-            <ToastContainer />
         </div>
     );
 }
