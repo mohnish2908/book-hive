@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Search, Book, BookOpen, BookOpenCheck, Menu, LogOut } from "lucide-react";
+import { CircleUserRound, Search, Book, BookOpen, BookOpenCheck, Menu, LogOut } from "lucide-react";
 import { cn } from "../lib/utils";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.jpg";
@@ -38,6 +38,7 @@ export default function MemberSidebar() {
                 </div>
                 <nav className="flex-1 overflow-y-auto bg-blue-900">
                     <ul className="p-2 space-y-2">
+                        <NavItem icon={CircleUserRound} label="Member Profile"   collapsed={collapsed} link="/member/memberprofile" onClick=  {handleNavItemClick} />
                         <NavItem icon={Search} label="Search Book" collapsed={collapsed} link="/member/searchbook" onClick={handleNavItemClick} />
                         <NavItem icon={Book} label="Requested Book" collapsed={collapsed} link="/member/requestedbooks" onClick={handleNavItemClick} />
                         <NavItem icon={BookOpen} label="Issued Books" collapsed={collapsed} link="/member/issuedbooks" onClick={handleNavItemClick} />

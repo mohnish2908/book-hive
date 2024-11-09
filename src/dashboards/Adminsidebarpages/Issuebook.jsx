@@ -15,13 +15,13 @@ const Issuebook = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = `http://localhost:8080/admin/issueBook/${memberId}/${adminId}`;
+      const url = `http://localhost:8080/admin/requestBookIssue`;
       const response = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ bookId}),
+        body: JSON.stringify({ bookId,memberId,adminId}),
       });
       const d = await response.json();
       console.log(d);

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { UserPlus, BookOpen, UserCheck, Book, BookOpenCheck, Users, Edit, Menu, UserRoundPen, LogOut } from "lucide-react";
+import { CircleUserRound, UserPlus, BookOpen, UserCheck, Book, BookOpenCheck, Users, Edit, Menu, UserRoundPen, LogOut } from "lucide-react";
 import { cn } from "../lib/utils";
 import { Button } from "./ui/Button";
 import logo from "../assets/logo.jpg";
@@ -39,6 +39,7 @@ export default function AdminSidebar() {
                 </div>
                 <nav className="flex-1 overflow-y-auto bg-blue-900">
                     <ul className="p-2 space-y-2">
+                        <NavItem icon={CircleUserRound} label="Admin Profile" collapsed={collapsed} link="/admin/adminprofile" onClick={handleNavItemClick} />
                         <NavItem icon={UserPlus} label="Add Member" collapsed={collapsed} link="/admin/addmember" onClick={handleNavItemClick} />
                         <NavItem icon={BookOpen} label="Add Book" collapsed={collapsed} link="/admin/addbook" onClick={handleNavItemClick} />
                         <NavItem icon={UserCheck} label="Add Admin" collapsed={collapsed} link="/admin/addadmin" onClick={handleNavItemClick} />

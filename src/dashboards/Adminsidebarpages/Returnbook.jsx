@@ -12,6 +12,8 @@ const Returnbook = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("bookId:",bookId);
+    console.log("memberId:",memberId);
     try {
       const url = `http://localhost:8080/admin/returnBook`;
       const response = await fetch(url, {
@@ -22,7 +24,7 @@ const Returnbook = () => {
         body: JSON.stringify({ bookId,memberId}),
       });
       const d = await response.json();
-      console.log(d);
+      console.log("resposne:",d);
       setMessage(d.data.message);
     } catch (error) {
       console.error('Error:', error);

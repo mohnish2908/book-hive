@@ -15,7 +15,8 @@ import Getallmembers from './dashboards/Adminsidebarpages/Getallmembers';
 import Issuebook from './dashboards/Adminsidebarpages/Issuebook';
 import Returnbook from './dashboards/Adminsidebarpages/Returnbook';
 import Issuedbooks from './dashboards/Membersidebarpages/Issuedbooks';
-// import Myprofile from './dashboards/Membersidebarpages/Myprofile';
+import Memberprofile from './dashboards/Membersidebarpages/Memberprofile';
+import Adminprofile from './dashboards/Adminsidebarpages/Adminprofile';
 import Searchbooks from './dashboards/Membersidebarpages/Searchbooks';
 import Requestedbooks from './dashboards/Membersidebarpages/Requestedbooks';
 import Returnedbooks from './dashboards/Membersidebarpages/Returnedbooks';
@@ -41,7 +42,8 @@ function App() {
         <Route path='/admin/issuebook' element={<Issuebook/>}/>
         <Route path='/admin/returnbook' element={<Returnbook/>}/>
         <Route path='/member/issuedbooks' element={<Issuedbooks/>}/>
-        {/* <Route path='/member/myprofile' element={<Myprofile/>}/> */}
+        <Route path='/member/memberprofile' element={<Memberprofile/>}/>
+        <Route path='/admin/adminprofile' element={<Adminprofile/>}/>
         <Route path='/member/searchbook' element={<Searchbooks/>}/>
         <Route path='/member/requestedbooks' element={<Requestedbooks/>}/>
         <Route path='/member/returnedbooks' element={<Returnedbooks/>}/>
