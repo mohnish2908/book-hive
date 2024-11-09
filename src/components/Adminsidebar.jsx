@@ -5,6 +5,8 @@ import { Button } from "./ui/Button";
 import logo from "../assets/logo.jpg";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function AdminSidebar() {
     const [collapsed, setCollapsed] = useState(false);
@@ -18,7 +20,7 @@ export default function AdminSidebar() {
 
     const handleNavItemClick = (link) => {
         if (link === '/') {
-            // For the logout link, use replace to clear history
+            toast.success("Logged out");
             navigate(link, { replace: true });
         } else {
             navigate(link, { state: { data: data } });
@@ -53,6 +55,7 @@ export default function AdminSidebar() {
                     </ul>
                 </nav>
             </div>
+            <ToastContainer />
         </div>
     );
 }

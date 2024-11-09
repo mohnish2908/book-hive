@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { CircleUserRound, Search, Book, BookOpen, BookOpenCheck, Menu, LogOut } from "lucide-react";
 import { cn } from "../lib/utils";
 import { useNavigate } from "react-router-dom";
-import logo from "../assets/logo.jpg";
 import { useLocation } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import logo from "../assets/logo.jpg";
 
 export default function MemberSidebar() {
     const [collapsed, setCollapsed] = useState(false);
@@ -17,7 +19,7 @@ export default function MemberSidebar() {
 
     const handleNavItemClick = (link) => {
         if (link === '/') {
-            // For the logout link, use replace to clear history
+            toast.success("Logged out");
             navigate(link, { replace: true });
         } else {
             navigate(link, { state: { data: data } });
@@ -38,7 +40,7 @@ export default function MemberSidebar() {
                 </div>
                 <nav className="flex-1 overflow-y-auto bg-blue-900">
                     <ul className="p-2 space-y-2">
-                        <NavItem icon={CircleUserRound} label="Member Profile"   collapsed={collapsed} link="/member/memberprofile" onClick=  {handleNavItemClick} />
+                        <NavItem icon={CircleUserRound} label="Member Profile" collapsed={collapsed} link="/member/memberprofile" onClick={handleNavItemClick} />
                         <NavItem icon={Search} label="Search Book" collapsed={collapsed} link="/member/searchbook" onClick={handleNavItemClick} />
                         <NavItem icon={Book} label="Requested Book" collapsed={collapsed} link="/member/requestedbooks" onClick={handleNavItemClick} />
                         <NavItem icon={BookOpen} label="Issued Books" collapsed={collapsed} link="/member/issuedbooks" onClick={handleNavItemClick} />
@@ -47,6 +49,7 @@ export default function MemberSidebar() {
                     </ul>
                 </nav>
             </div>
+            <ToastContainer position="top-right" autoClose={3000} />
         </div>
     );
 }
