@@ -3,8 +3,7 @@ import { CircleUserRound, Search, Book, BookOpen, BookOpenCheck, Menu, LogOut } 
 import { cn } from "../lib/utils";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import logo from "../assets/logo.jpg";
 
 export default function MemberSidebar() {
@@ -49,7 +48,6 @@ export default function MemberSidebar() {
                     </ul>
                 </nav>
             </div>
-            <ToastContainer position="top-right" autoClose={3000} />
         </div>
     );
 }
