@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Adminsidebar from '../../components/Adminsidebar';
 import { useLocation } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Addbook = () => {
     const [formData, setFormData] = useState({
@@ -26,6 +27,7 @@ const Addbook = () => {
             ...formData,
             [name]: type === 'checkbox' ? checked : value
         });
+
     };
 
     const handleSubmit = async (e) => {
@@ -42,8 +44,10 @@ const Addbook = () => {
             });
             const result = await response.json();
             console.log(result);
+            toast.success('Book added successfully');
         } catch (error) {
             console.error('Error:', error);
+            toast.error('Error adding book');
         }
     };
 

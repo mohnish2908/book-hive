@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import Adminsidebar from '../../components/Adminsidebar';
 import { useLocation } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Addadmin = () => {
   const [members, setMembers] = useState([]);
   const location = useLocation();
   const { data } = location.state || {};
-  
+
   const [formData, setFormData] = useState({
     name: '',
     gender: '',
@@ -25,7 +26,7 @@ const Addadmin = () => {
       [name]: value
     });
   };
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     let response;
@@ -46,8 +47,10 @@ const Addadmin = () => {
       } else {
         setCon('User registered successfully ' + d.data.registrationId);
       }
+      toast.success('Admin added successfully');
     } catch (networkError) {
       console.error('Network error:', networkError);
+      toast.error('Error adding admin');
       return;
     }
   };
@@ -57,28 +60,28 @@ const Addadmin = () => {
       <div>
         <Adminsidebar data={data} />
       </div>
-      
+
       <div className='w-full max-w-md mx-auto mt-8'>
         <form onSubmit={handleSubmit} className='bg-gray-800 p-8 rounded-lg shadow-md'>
           <div className='mb-4'>
             <label className='block text-sm font-medium mb-2'>Name:</label>
-            <input 
-              type="text" 
-              name="name" 
-              value={formData.name} 
-              onChange={handleChange} 
-              required 
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              required
               className='w-full p-2 border border-gray-300 rounded-md'
               style={{ color: 'black' }}
             />
           </div>
           <div className='mb-4'>
             <label className='block text-sm font-medium mb-2'>Gender:</label>
-            <select 
-              name="gender" 
-              value={formData.gender} 
-              onChange={handleChange} 
-              required 
+            <select
+              name="gender"
+              value={formData.gender}
+              onChange={handleChange}
+              required
               className='w-full p-2 border border-gray-300 rounded-md'
               style={{ color: 'black' }}
             >
@@ -89,48 +92,48 @@ const Addadmin = () => {
           </div>
           <div className='mb-4'>
             <label className='block text-sm font-medium mb-2'>Email:</label>
-            <input 
-              type="email" 
-              name="email" 
-              value={formData.email} 
-              onChange={handleChange} 
-              required 
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
               className='w-full p-2 border border-gray-300 rounded-md'
               style={{ color: 'black' }}
             />
           </div>
           <div className='mb-4'>
             <label className='block text-sm font-medium mb-2'>Address:</label>
-            <input 
-              type="text" 
-              name="address" 
-              value={formData.address} 
-              onChange={handleChange} 
-              required 
+            <input
+              type="text"
+              name="address"
+              value={formData.address}
+              onChange={handleChange}
+              required
               className='w-full p-2 border border-gray-300 rounded-md'
               style={{ color: 'black' }}
             />
           </div>
           <div className='mb-4'>
             <label className='block text-sm font-medium mb-2'>Password:</label>
-            <input 
-              type="password" 
-              name="password" 
-              value={formData.password} 
-              onChange={handleChange} 
-              required 
+            <input
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
               className='w-full p-2 border border-gray-300 rounded-md'
               style={{ color: 'black' }}
             />
           </div>
           <div className='mb-4'>
             <label className='block text-sm font-medium mb-2'>Contact No:</label>
-            <input 
-              type="text" 
-              name="contactNo" 
-              value={formData.contactNo} 
-              onChange={handleChange} 
-              required 
+            <input
+              type="text"
+              name="contactNo"
+              value={formData.contactNo}
+              onChange={handleChange}
+              required
               className='w-full p-2 border border-gray-300 rounded-md'
               style={{ color: 'black' }}
             />
