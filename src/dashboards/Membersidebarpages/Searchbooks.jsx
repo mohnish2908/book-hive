@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import Membersidebar from '../../components/Membersidebar'
+import { toast } from 'react-toastify';
 
 const Searchbooks = () => {
 
@@ -30,8 +31,10 @@ const Searchbooks = () => {
             });
             const responseData = await response.json();
             console.log("responseData:", responseData);
+            toast.success('Book requested successfully');
         } catch (error) {
             console.log(error);
+            toast.error('Error requesting book');
         }
     };
 
@@ -51,9 +54,11 @@ const Searchbooks = () => {
             setBook(d.data);
             console.log("book is:", book);
             setError('');
+            toast.success('Book found successfully');
         } catch (err) {
             setBook(null);
             setError(err.message);
+            toast.error('Error finding book');
         }
     };
 
