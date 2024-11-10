@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Adminsidebar from '../../components/Adminsidebar';
 import { useLocation } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Issuebook = () => {
   const [issueDate, setIssueDate] = useState('');
@@ -25,8 +26,10 @@ const Issuebook = () => {
       });
       const d = await response.json();
       console.log(d);
+      toast.success('Book Issued successfully');
     } catch (error) {
       console.error('Error:', error);
+        toast.error('Error issuing book');
     }
   };
 

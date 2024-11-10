@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Adminsidebar from '../../components/Adminsidebar';
 import { useLocation } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Addpublisher = () => {
   const [formData, setFormData] = useState({
@@ -51,9 +52,11 @@ const Addpublisher = () => {
       });
       const data = await response.json();
       console.log(data);
+      toast.success('Publisher added successfully');
       fetchPublishers();
     } catch (error) {
       console.error('Error adding publisher:', error);
+      toast.error('Error adding publisher');
     }
   };
 
@@ -65,9 +68,11 @@ const Addpublisher = () => {
       const data = await response.json();
       console.log(data);
       setMessage('Publisher deleted successfully');
+      toast.success('Publisher deleted successfully');
       fetchPublishers();
     } catch (error) {
       console.error('Error deleting publisher:', error);
+        toast.error('Error deleting publisher');
       setMessage('Error deleting publisher');
     }
   };
@@ -87,8 +92,10 @@ const Addpublisher = () => {
         setFetchedPublisher(null);
         setMessage('No such publisher found');
       }
+      toast.success('Publisher fetched successfully');
     } catch (error) {
       console.error('Error fetching publisher:', error);
+        toast.error('Error fetching publisher');
       setFetchedPublisher(null);
       setMessage('Error fetching publisher');
     }
@@ -150,7 +157,7 @@ const Addpublisher = () => {
               className='text-black mt-1 block w-full px-3 py-2 bg-gray-700 text-gray-300 border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
             />
           </div>
-          <button type='submit' className='btn btn-primary bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-md'>Submit</button>
+          <button type='submit' className='btn btn-primary bg-blue-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-md'>Add Publisher</button>
         </form>
 
         {/* get all publishers */}
@@ -193,7 +200,7 @@ const Addpublisher = () => {
             />
           </div>
           <button onClick={handleGetPublisherById} className='btn btn-primary bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md mt-4'>Get Publisher</button>
-          <button onClick={handleDeletePublisherById} className='btn btn-primary bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md mt-4 ml-4'>Delete Publisher</button>
+          <button onClick={handleDeletePublisherById} className='btn btn-primary bg-blue-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md mt-4 ml-4'>Delete Publisher</button>
         </div>
       </div>
     </div>

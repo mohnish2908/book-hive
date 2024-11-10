@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Adminsidebar from '../../components/Adminsidebar';
 import { useLocation } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Returnbook = () => {
   const [bookId, setBookId] = useState('');
@@ -26,8 +27,10 @@ const Returnbook = () => {
       const d = await response.json();
       console.log("resposne:",d);
       setMessage(d.data.message);
+      toast.success('Book Returned successfully');
     } catch (error) {
       console.error('Error:', error);
+      toast.error('Error returning book');
     }
   };
 
