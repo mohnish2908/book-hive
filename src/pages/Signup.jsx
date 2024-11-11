@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import Navbar from '../components/common/Navbar';
 
 const SignupForm = () => {
@@ -10,7 +9,7 @@ const SignupForm = () => {
         contactNo: '',
         gender: 'male'
     });
-    const [con,setcon]=useState('');
+    const [con, setCon] = useState('');
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -22,44 +21,47 @@ const SignupForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // try {
-        //     const response = await axios.post('/newMember/create', formData);
-        //     console.log(response.data);
-        // } catch (error) {
-        //     console.error('There was an error!', error);
 
-        // }
+        // Check if all required fields are filled
+        if (!formData.name || !formData.email || !formData.address || !formData.contactNo || !formData.gender) {
+            setCon('Please fill in all fields.');
+            return;
+        }
+
         let response;
-      try {
-        console.log(formData);
-
-        response = await fetch(`http://localhost:8080/newMember/create`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-
-          body: JSON.stringify(formData),
-        });
-        const d=await response.json();
-        console.log(d);
-        if(d.data===null){
-          setcon(d.error.message);
+        try {
+            console.log(formData);
+            response = await fetch(`http://localhost:8080/newMember/create`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
+            const d = await response.json();
+            console.log(d);
+            if (d.data === null) {
+                setCon(d.error.message);
+            } else {
+                setCon('User registered successfully: ' + d.data.registrationId);
+                // Reset form data after successful submission
+                setFormData({
+                    name: '',
+                    email: '',
+                    address: '',
+                    contactNo: '',
+                    gender: 'male'
+                });
+            }
+        } catch (networkError) {
+            console.error('Network error:', networkError);
+            return;
         }
-        else{
-            setcon('User registered successfully'+d.data.registrationId);
-        }
-        // const data = await response.json();
-
-      } catch (networkError) {
-        console.error('Network error:', networkError);
-        return;
-      }
     };
 
     return (
-        <div className='text-white flex flex-col justify-center items-center h-screen '>
-            <div className="h-1/2 w-1/3 border flex flex-col justify-center items-center ">
+        <div className='text-white flex flex-col justify-center items-center h-screen'>
+            <div className="h-1/2 w-1/3 border flex flex-col justify-center items-center">
                 <h1 className='text-3xl font-bold'>Signup</h1>
                 <form onSubmit={handleSubmit}>
                     <div className='mt-7'>

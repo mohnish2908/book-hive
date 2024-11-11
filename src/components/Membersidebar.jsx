@@ -43,7 +43,7 @@ export default function MemberSidebar() {
                         <NavItem icon={Search} label="Search Book" collapsed={collapsed} link="/member/searchbook" onClick={handleNavItemClick} />
                         <NavItem icon={Book} label="Requested Book" collapsed={collapsed} link="/member/requestedbooks" onClick={handleNavItemClick} />
                         <NavItem icon={BookOpen} label="Issued Books" collapsed={collapsed} link="/member/issuedbooks" onClick={handleNavItemClick} />
-                        <NavItem icon={BookOpenCheck} label="Returned Books" collapsed={collapsed} link="/member/returnedbooks" onClick={handleNavItemClick} />
+                        <NavItem icon={BookOpenCheck} label="Available Books" collapsed={collapsed} link="/member/returnedbooks" onClick={handleNavItemClick} />
                         <NavItem icon={LogOut} label="Logout" collapsed={collapsed} link="/" onClick={handleNavItemClick} />
                     </ul>
                 </nav>

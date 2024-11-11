@@ -5,9 +5,10 @@ import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import Membersidebar from '../../components/Membersidebar'
 import { toast } from 'react-toastify';
+import Loader from '../../components/Loader';
 
 const Searchbooks = () => {
-
+    const [loading, setLoading] = useState(false);
     const [bookName, setBookName] = useState('');
     const [book, setBook] = useState(null);
     const [error, setError] = useState('');
@@ -16,8 +17,9 @@ const Searchbooks = () => {
     console.log(data);
 
     const requestBookHandler = async () => {
-        console.log("adfadsfasdf:", book.bookId);
-        console.log("adfasdfa:", data.memberId);
+        setLoading(true);
+        console.log("Book Id:", book.bookId);
+        console.log("Member Id:", data.memberId);
         try {
             const response = await fetch('http://localhost:8080/member/addBookRequest', {
                 method: 'POST',
@@ -32,15 +34,20 @@ const Searchbooks = () => {
             const responseData = await response.json();
             console.log("responseData:", responseData);
             toast.success('Book requested successfully');
+            setBookName('');
+            setBook(null);
         } catch (error) {
             console.log(error);
             toast.error('Error requesting book');
+        } finally {
+            setLoading(false);
+            // window.location.reload();
         }
     };
 
     const handleSearch = async () => {
         try {
-            const response = await fetch(`http://localhost:8080/member/getBookByTitle/${bookName}`, {
+            const response = await fetch('http://localhost:8080/member/getBookByTitle/${bookName}', {
                 method: 'GET',
             });
             const d = await response.json();
@@ -84,12 +91,21 @@ const Searchbooks = () => {
                 {book && (
                     <div className='mt-4 p-4 border border-gray-300 rounded text-white w-1/2'>
                         <h2 className='text-xl font-bold mb-2'>{book.title}</h2>
-                        <p className='text-gray-400 mb-2'>{book.language}</p>
+                        <p className='text-gray-400 mb-2'>Author Name: {book.authorName}</p>
+                        <p className='text-gray-400 mb-2'>Category: {book.category}</p>
+                        <p className='text-gray-400 mb-2'>Edition: {book.edition}</p>
+                        <p className='text-gray-400 mb-2'>ISBN: {book.isbn}</p>
+                        <p className='text-gray-400 mb-2'>Language: {book.language}</p>
+                        <p className='text-gray-400 mb-2'>Publication Year: {book.publicationYear}</p>
+                        <p className='text-gray-400 mb-2'>Pages: {book.totalPages}</p>
+                        <p className='text-gray-400 mb-2'>Publisher ID: {book.publisher.name}</p>
                         <button className='bg-brown-500 text-white p-2 rounded hover:bg-richblack-500' onClick={requestBookHandler}>
                             Pre-request Book
                         </button>
+                        {loading && <Loader />}
                     </div>
                 )}
+
                 {error && <p className='text-red-500 mt-4'>{error}</p>}
             </div>
         </div>
