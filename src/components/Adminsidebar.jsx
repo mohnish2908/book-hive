@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { CircleUserRound, UserPlus, BookOpen, UserCheck, Book, BookOpenCheck, Users, Edit, Menu, UserRoundPen, LogOut } from "lucide-react";
+import { CircleUserRound, UserPlus, BookOpen, UserCheck, Book, BookOpenCheck, Users, Edit, Menu, UserRoundPen, LogOut, UsersRound } from "lucide-react";
 import { cn } from "../lib/utils";
 import { Button } from "./ui/Button";
 import logo from "../assets/logo.jpg";
@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 
-export default function AdminSidebar() {
+export default function AdminSidebar() {            
     const [collapsed, setCollapsed] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
@@ -49,6 +49,7 @@ export default function AdminSidebar() {
                         <NavItem icon={Users} label="Get All Members" collapsed={collapsed} link="/admin/getallmembers" onClick={handleNavItemClick} />
                         <NavItem icon={Edit} label="Edit Member Details" collapsed={collapsed} link="/admin/editmemberdetails" onClick={handleNavItemClick} />
                         <NavItem icon={UserRoundPen} label="Add Publisher" collapsed={collapsed} link="/admin/addpublisher" onClick={handleNavItemClick} />
+                        <NavItem icon={UsersRound} label="Show All Publishers" collapsed={collapsed} link="/admin/showallpublishers" onClick={handleNavItemClick} />
                         <NavItem icon={BookOpen} label="Request Issue" collapsed={collapsed} link="/admin/requestissue" onClick={handleNavItemClick} />
                         <NavItem icon={LogOut} label="Logout" collapsed={collapsed} link="/" onClick={handleNavItemClick} />
                     </ul>
