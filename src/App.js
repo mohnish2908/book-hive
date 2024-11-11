@@ -20,6 +20,7 @@ import Issuedbooks from './dashboards/Membersidebarpages/Issuedbooks';
 import Memberprofile from './dashboards/Membersidebarpages/Memberprofile';
 import Adminprofile from './dashboards/Adminsidebarpages/Adminprofile';
 import Searchbooks from './dashboards/Membersidebarpages/Searchbooks';
+import Showallpublishers from './dashboards/Adminsidebarpages/Showallpublishers';
 import Requestedbooks from './dashboards/Membersidebarpages/Requestedbooks';
 import Returnedbooks from './dashboards/Membersidebarpages/Returnedbooks';
 import Addpublisher from './dashboards/Adminsidebarpages/Addpublisher';
@@ -52,6 +53,7 @@ function App() {
         <Route path='/member/returnedbooks' element={<Returnedbooks/>}/>
         <Route path='/admin/addpublisher' element={<Addpublisher/>}/>
         <Route path='/admin/requestissue' element={<RequestIssue/>}/>
+        <Route path='/admin/showallpublishers' element={<Showallpublishers/>}/>
       </Routes>
     </div>
   );

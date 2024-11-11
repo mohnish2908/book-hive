@@ -160,31 +160,6 @@ const Addpublisher = () => {
           <button type='submit' className='btn btn-primary bg-blue-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-md'>Add Publisher</button>
         </form>
 
-        {/* get all publishers */}
-        <div className='mt-8'>
-        <button
-            onClick={togglePublishersList}
-            className='btn btn-primary bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md'
-        >
-            {showPublishers ? 'Hide All Publishers' : 'Show All Publishers'}
-        </button>
-        {showPublishers && (
-          <div className='mt-4'>
-              <ul className='space-y-4'>
-                {publishers.map((publisher) => (
-                  <li key={publisher.id} className='bg-gray-800 p-4 rounded-md shadow-md'>
-                    <div className="flex flex-col space-y-2">
-                      <p className='text-lg font-semibold'>{publisher.name}</p>
-                      <p className='text-sm text-gray-400'>({publisher.email})</p>
-                      <p className='text-sm text-gray-400'>{publisher.address}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-        )}
-        </div>
-
         {/* get/delete publisher by ID */}
         <div className='mt-8'>
           <h3 className='text-xl font-bold mb-4'>Get/Delete Publisher by ID</h3>
