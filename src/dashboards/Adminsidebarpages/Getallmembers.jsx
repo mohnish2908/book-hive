@@ -9,7 +9,6 @@ const Getallmembers = () => {
 
     const fetchMembers = async () => {
         try {
-            // Replace with your actual API endpoint
             const response = await fetch('http://localhost:8080/admin/getAllMembers');
             const result = await response.json();
             console.log(result.data);
@@ -33,20 +32,36 @@ const Getallmembers = () => {
                 </button>
                 <div className='mt-8'>
                     {members.length > 0 ? (
-                        <ul className='space-y-4'>
-                            {members.map((member, index) => (
-                                <li key={index} className='bg-gray-800 p-6 rounded shadow-md'>
-                                    <p><strong>Name:</strong> {member.name}</p>
-                                    <p><strong>Address:</strong> {member.address}</p>
-                                    <p><strong>Admin ID:</strong> {member.adminId}</p>
-                                    <p><strong>Contact No:</strong> {member.contactNo}</p>
-                                    <p><strong>Email:</strong> {member.email}</p>
-                                    <p><strong>Gender:</strong> {member.gender}</p>
-                                    <p><strong>Active:</strong> {member.isActive ? 'Yes' : 'No'}</p>
-                                    <p><strong>Member ID:</strong> {member.memberId}</p>
-                                </li>
-                            ))}
-                        </ul>
+                        <table className='min-w-full bg-gray-800 text-white border border-gray-700'>
+                            <thead>
+                                <tr>
+                                    <th className='px-4 py-2 border-b border-gray-700'>Name</th>
+                                    <th className='px-4 py-2 border-b border-gray-700'>Address</th>
+                                    <th className='px-4 py-2 border-b border-gray-700'>Admin ID</th>
+                                    <th className='px-4 py-2 border-b border-gray-700'>Contact No</th>
+                                    <th className='px-4 py-2 border-b border-gray-700'>Email</th>
+                                    <th className='px-4 py-2 border-b border-gray-700'>Gender</th>
+                                    <th className='px-4 py-2 border-b border-gray-700'>Active</th>
+                                    <th className='px-4 py-2 border-b border-gray-700'>Member ID</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {members.map((member, index) => (
+                                    <tr key={index} className='bg-gray-700'>
+                                        <td className='px-4 py-2 border-b border-gray-600'>{member.name}</td>
+                                        <td className='px-4 py-2 border-b border-gray-600'>{member.address}</td>
+                                        <td className='px-4 py-2 border-b border-gray-600'>{member.adminId}</td>
+                                        <td className='px-4 py-2 border-b border-gray-600'>{member.contactNo}</td>
+                                        <td className='px-4 py-2 border-b border-gray-600'>{member.email}</td>
+                                        <td className='px-4 py-2 border-b border-gray-600'>{member.gender}</td>
+                                        <td className='px-4 py-2 border-b border-gray-600'>
+                                            {member.isActive ? 'Yes' : 'No'}
+                                        </td>
+                                        <td className='px-4 py-2 border-b border-gray-600'>{member.memberId}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
                     ) : (
                         <p className='text-gray-400'>No members found</p>
                     )}

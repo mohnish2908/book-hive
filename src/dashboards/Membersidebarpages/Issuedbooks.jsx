@@ -33,7 +33,7 @@ const Issuedbooks = () => {
                     };
                 })
             );
-
+            console.log(issuedBooksWithDetails)
             setIssuedBook(issuedBooksWithDetails);
         } catch (error) {
             console.log(error);
@@ -44,13 +44,13 @@ const Issuedbooks = () => {
 
     useEffect(() => {
         fetchIssuedBooks();
-      }, [data]);
+    }, [data]);
 
     return (
         <div className='text-white flex'>
             <Membersidebar data={data}/>
             <div className='ml-6 mt-6 w-full'>
-            <h1 className='text-2xl font-bold mb-4'>Issued Books</h1>
+                <h1 className='text-2xl font-bold mb-4'>Issued Books</h1>
 
                 <button
                     onClick={fetchIssuedBooks}
@@ -62,20 +62,40 @@ const Issuedbooks = () => {
                 {error && <p className='text-red-500'>{error}</p>}
 
                 {issuedbook.length > 0 ? (
-                    issuedbook.map((book) => (
-                        <div key={book.bookId} className='bg-gray-800 p-4 rounded-md mb-4 shadow-lg'>
-                            <p className='text-lg font-semibold'>Book Name: {book.bookName}</p>
-                            <p className='text-md'>Author: {book.author}</p>
-                            <p className='text-sm'>Issued Date: {new Date(book.issueDate).toLocaleDateString('en-GB')}</p>
-                            <p className='text-sm'>Due Date: {new Date(new Date(book.issueDate).setDate(new Date(book.issueDate).getDate() + 30)).toLocaleDateString('en-GB')}</p>
-                        </div>
-                    ))
+                    <table className='min-w-full bg-gray-800 text-white border border-gray-700'>
+                        <thead>
+                            <tr>
+                                <th className='px-4 py-2 border-b border-gray-700'>Book ID</th>
+                                <th className='px-4 py-2 border-b border-gray-700'>Book Name</th>
+                                <th className='px-4 py-2 border-b border-gray-700'>Author</th>
+                                <th className='px-4 py-2 border-b border-gray-700'>Issued By(admin)</th>
+                                <th className='px-4 py-2 border-b border-gray-700'>Issued Date</th>
+                                <th className='px-4 py-2 border-b border-gray-700'>Due Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {issuedbook.map((book) => (
+                                <tr key={book.bookId} className='bg-gray-700'>
+                                    <td className='px-4 py-2 border-b border-gray-600'>{book.bookId}</td>
+                                    <td className='px-4 py-2 border-b border-gray-600'>{book.bookName}</td>
+                                    <td className='px-4 py-2 border-b border-gray-600'>{book.author}</td>
+                                    <td className='px-[6%] py-2 border-b border-gray-600'>{book.adminId}</td>
+                                    <td className='px-[3%] py-2 border-b border-gray-600'>
+                                        {new Date(book.issueDate).toLocaleDateString('en-GB')}
+                                    </td>
+                                    <td className='px-[2%] py-2 border-b border-gray-600'>
+                                        {new Date(new Date(book.issueDate).setDate(new Date(book.issueDate).getDate() + 30)).toLocaleDateString('en-GB')}
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
                 ) : (
                     <p className='text-2xl'>No issued book</p>
                 )}
             </div>
         </div>
     );
-}
+};
 
 export default Issuedbooks;
