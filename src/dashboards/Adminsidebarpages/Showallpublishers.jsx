@@ -42,6 +42,7 @@ const Showallpublishers = () => {
                         <table className='min-w-full bg-gray-800 text-center rounded-lg overflow-hidden shadow-lg'>
                             <thead>
                                 <tr className="bg-gray-700">
+                                    <th className='py-2 px-4 border border-gray-600'>Publisher Id</th>
                                     <th className='py-2 px-4 border border-gray-600'>Name</th>
                                     <th className='py-2 px-4 border border-gray-600'>Email</th>
                                     <th className='py-2 px-4 border border-gray-600'>Address</th>
@@ -50,6 +51,7 @@ const Showallpublishers = () => {
                             <tbody>
                                 {publishers.map((publisher) => (
                                     <tr key={publisher.id} className="hover:bg-gray-600">
+                                        <td className='py-2 px-4 border border-gray-700'>{publisher.publisherId}</td>
                                         <td className='py-2 px-4 border border-gray-700'>{publisher.name}</td>
                                         <td className='py-2 px-4 border border-gray-700'>{publisher.email}</td>
                                         <td className='py-2 px-4 border border-gray-700'>{publisher.address}</td>

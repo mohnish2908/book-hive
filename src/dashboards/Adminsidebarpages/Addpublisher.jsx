@@ -57,25 +57,37 @@ const Addpublisher = () => {
     } catch (error) {
       console.error('Error adding publisher:', error);
       toast.error('Error adding publisher');
+    } finally {
+      setFormData({
+        name: '',
+        email: '',
+        address: '',
+      });
     }
   };
 
-  const handleDelete = async (id) => {
-    try {
-      const response = await fetch(`http://localhost:8080/admin/deletePublisher/${id}`, {
-        method: 'DELETE',
-      });
-      const data = await response.json();
-      console.log(data);
-      setMessage('Publisher deleted successfully');
-      toast.success('Publisher deleted successfully');
-      fetchPublishers();
-    } catch (error) {
-      console.error('Error deleting publisher:', error);
-        toast.error('Error deleting publisher');
-      setMessage('Error deleting publisher');
-    }
-  };
+//   const handleDelete = async (id) => {
+//     try {
+//       const response = await fetch(`http://localhost:8080/admin/deletePublisher/${id}`, {
+//         method: 'DELETE',
+//       });
+//       const data = await response.json();
+//       console.log(data);
+//       setMessage('Publisher deleted successfully');
+//       if(data.data === null) {
+//             toast.error(data.error.message);
+//         } else {
+//             toast.success('Publisher deleted successfully');
+//         }
+//       fetchPublishers();
+//     } catch (error) {
+//       console.error('Error deleting publisher:', error);
+//         toast.error('Error deleting publisher');
+//       setMessage('Error deleting publisher');
+//     } finally {
+//         setPublisherId('');
+//     }
+//   };
 
   const handleGetPublisher = async (id) => {
     try {
@@ -92,12 +104,18 @@ const Addpublisher = () => {
         setFetchedPublisher(null);
         setMessage('No such publisher found');
       }
-      toast.success('Publisher fetched successfully');
+      if(data.data === null) {
+            toast.error(data.error.message);
+        } else {
+            toast.success('Publisher fetched successfully');
+        }
     } catch (error) {
       console.error('Error fetching publisher:', error);
         toast.error('Error fetching publisher');
       setFetchedPublisher(null);
       setMessage('Error fetching publisher');
+    } finally {
+        setPublisherId('');
     }
   };
 
@@ -110,9 +128,9 @@ const Addpublisher = () => {
     handleGetPublisher(publisherId);
   };
 
-  const handleDeletePublisherById = () => {
-    handleDelete(publisherId);
-  };
+//   const handleDeletePublisherById = () => {
+//     handleDelete(publisherId);
+//   };
 
   const togglePublishersList = () => {
     setShowPublishers(!showPublishers);
@@ -162,7 +180,7 @@ const Addpublisher = () => {
 
         {/* get/delete publisher by ID */}
         <div className='mt-8'>
-          <h3 className='text-xl font-bold mb-4'>Get/Delete Publisher by ID</h3>
+          <h3 className='text-xl font-bold mb-4'>Get Publisher by ID</h3>
           <div className='form-group'>
             <label htmlFor='publisherId' className='block text-sm font-medium text-gray-300'>Publisher ID</label>
             <input
@@ -175,7 +193,26 @@ const Addpublisher = () => {
             />
           </div>
           <button onClick={handleGetPublisherById} className='btn btn-primary bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md mt-4'>Get Publisher</button>
-          <button onClick={handleDeletePublisherById} className='btn btn-primary bg-blue-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md mt-4 ml-4'>Delete Publisher</button>
+          {fetchedPublisher && (
+            <div className='mt-4'>
+              <h3 className='text-xl font-bold mb-4'>Publisher Details</h3>
+              <div className='grid grid-cols-2 gap-1'>
+                <div>
+                  <p className='text-sm font-medium text-gray-300'>Publisher ID:</p>
+                  <p className='text-sm font-medium text-gray-300'>Name:</p>
+                  <p className='text-sm font-medium text-gray-300'>Email:</p>
+                  <p className='text-sm font-medium text-gray-300'>Address:</p>
+                </div>
+                <div>
+                    <p className='text-sm text-gray-300'>{fetchedPublisher.data.publisherId}</p>
+                    <p className='text-sm text-gray-300'>{fetchedPublisher.data.name}</p>
+                    <p className='text-sm text-gray-300'>{fetchedPublisher.data.email}</p>
+                    <p className='text-sm text-gray-300'>{fetchedPublisher.data.address}</p>
+                </div>
+              </div>
+            </div>
+          )}
+          {/* <button onClick={handleDeletePublisherById} className='btn btn-primary bg-blue-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-md mt-4 ml-4'>Delete Publisher</button> */}
         </div>
       </div>
     </div>

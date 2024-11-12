@@ -27,10 +27,17 @@ const Returnbook = () => {
       const d = await response.json();
       console.log("resposne:",d);
       setMessage(d.data.message);
-      toast.success('Book Returned successfully');
+      if(d.data === null) {
+        toast.error(d.error.message);
+      } else {
+        toast.success('Book Returned successfully');
+      }
     } catch (error) {
       console.error('Error:', error);
       toast.error('Error returning book');
+    } finally {
+        setBookId('');
+        setMemberId('');
     }
   };
 

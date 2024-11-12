@@ -52,6 +52,17 @@ const Addadmin = () => {
       console.error('Network error:', networkError);
       toast.error('Error adding admin');
       return;
+    } finally {
+        setFormData(
+            {
+                name: '',
+                gender: '',
+                email: '',
+                address: '',
+                password: '',
+                contactNo: ''
+            }
+        )
     }
   };
 
