@@ -10,7 +10,7 @@ const Returnbook = () => {
 
   const location = useLocation();
   const { data } = location.state || {};
-
+  const adminId=data.adminId;
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("bookId:",bookId);
@@ -22,7 +22,7 @@ const Returnbook = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ bookId,memberId}),
+        body: JSON.stringify({ bookId,memberId,adminId}),
       });
       const d = await response.json();
       console.log("resposne:",d);
