@@ -111,18 +111,24 @@ const GetRecordWithDate = () => {
             <table className="min-w-full table-auto text-white">  
               <thead className="bg-gray-700">  
                 <tr>  
-                  <th className="px-4 py-2">Admin Id:</th>  
+                  <th className="px-4 py-2">Issued Admin Id:</th>
+                  <th className="px-4 py-2">Returned Admin Id:</th>  
                   <th className="px-4 py-2">Member Id:</th>  
-                  <th className="px-4 py-2">Date & Time:</th>  
+                  <th className="px-4 py-2">Book Id:</th>
+                  <th className="px-4 py-2">Issue Date & Time:</th>
+                  <th className="px-4 py-2">Return Date & Time:</th>  
                   
                 </tr>  
               </thead>  
               <tbody className="bg-gray-900">  
                 {records.map((record, index) => (  
-                  <tr key={index} className="border-b border-gray-700">  
-                    <td className="px-4 py-2">{record.adminId}</td>  
-                    <td className="px-4 py-2">{record.bookId}</td>  
-                    <td className="px-4 py-2">{new Date(record.issueDate).toLocaleString()}</td> {/* Improved date formatting */}  
+                  <tr key={index} className="border border-gray-700">  
+                    <td className="px-4 py-2 translate-x-[30%]">{record.adminId}</td>
+                    <td className="px-4 py-2 translate-x-[30%]">{record.returnedBy}</td>  
+                    <td className="px-4 py-2 ">{record.memberId}</td>
+                    <td className="px-4 py-2 ">{record.bookId}</td>  
+                    <td className="px-4 py-2 ">{new Date(record.issueDate).toLocaleString()}</td> {/* Improved date formatting */}  
+                    <td className="px-4 py-2 ">{new Date(record.returnDate).toLocaleString()}</td>
                   </tr>  
                 ))}  
               </tbody>  
