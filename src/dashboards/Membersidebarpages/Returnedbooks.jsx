@@ -43,7 +43,7 @@ const Returnedbooks = () => {
                                 <th className="p-2 border border-gray-600">Total Pages</th>
                                 <th className="p-2 border border-gray-600">Publication Year</th>
                                 <th className="p-2 border border-gray-600">Category</th>
-                                <th className="p-2 border border-gray-600">Available</th>
+                                <th className="p-2 border border-gray-600">Available Count</th>
                                 <th className="p-2 border border-gray-600">Publisher Name</th>
                                 <th className="p-2 border border-gray-600">Publisher Email</th>
                                 <th className="p-2 border border-gray-600">Publisher Address</th>
@@ -61,7 +61,7 @@ const Returnedbooks = () => {
                                     <td className="p-2 border border-gray-600">{book.totalPages}</td>
                                     <td className="p-2 border border-gray-600">{book.publicationYear}</td>
                                     <td className="p-2 border border-gray-600">{book.category}</td>
-                                    <td className="p-2 border border-gray-600">{book.available ? "Yes" : "No"}</td>
+                                    <td className="p-2 border border-gray-600">{book.availableBook}</td>
                                     <td className="p-2 border border-gray-600">{book.publisher.name}</td>
                                     <td className="p-2 border border-gray-600">{book.publisher.email}</td>
                                     <td className="p-2 border border-gray-600">{book.publisher.address}</td>

@@ -15,6 +15,7 @@ const Searchbooks = () => {
     const location = useLocation();
     const { data } = location.state || {};
     console.log(data);
+    const [message, setMessage] = useState('');
 
     const requestBookHandler = async () => {
         setLoading(true);
@@ -41,13 +42,12 @@ const Searchbooks = () => {
             toast.error('Error requesting book');
         } finally {
             setLoading(false);
-            // window.location.reload();
         }
     };
 
     const handleSearch = async () => {
         try {
-            const response = await fetch('http://localhost:8080/member/getBookByTitle/${bookName}', {
+            const response = await fetch(`http://localhost:8080/member/getBookByTitle/${bookName}`, {
                 method: 'GET',
             });
             const d = await response.json();
