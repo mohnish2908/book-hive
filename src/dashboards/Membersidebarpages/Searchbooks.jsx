@@ -1,9 +1,6 @@
-import React from 'react'
-import { useState } from 'react';
-import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
-import Membersidebar from '../../components/Membersidebar'
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import Membersidebar from '../../components/Membersidebar';
 import { toast } from 'react-toastify';
 import Loader from '../../components/Loader';
 
@@ -67,6 +64,8 @@ const Searchbooks = () => {
             setBook(null);
             setError(err.message);
             toast.error('Error finding book');
+        } finally {
+            setBookName(''); // Clear the input field
         }
     };
 
@@ -138,4 +137,4 @@ const Searchbooks = () => {
     )
 }
 
-export default Searchbooks
+export default Searchbooks;

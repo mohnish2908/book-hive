@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 
-export default function AdminSidebar() {            
+export default function AdminSidebar() {
     const [collapsed, setCollapsed] = useState(false);
     const navigate = useNavigate();
     const location = useLocation();
@@ -52,8 +52,8 @@ export default function AdminSidebar() {
                         <NavItem icon={UserRoundPen} label="Add Publisher" collapsed={collapsed} link="/admin/addpublisher" onClick={handleNavItemClick} />
                         <NavItem icon={UsersRound} label="Show All Publishers" collapsed={collapsed} link="/admin/showallpublishers" onClick={handleNavItemClick} />
                         <NavItem icon={BookOpen} label="Request Issue" collapsed={collapsed} link="/admin/requestissue" onClick={handleNavItemClick} />
-                        <NavItem icon={LogOut} label="Logout" collapsed={collapsed} link="/" onClick={handleNavItemClick} />
                         <NavItem icon={UsersRound} label="Show Record To Date" collapsed={collapsed} link="/admin/getrecordwithdate" onClick={handleNavItemClick} />
+                        <NavItem icon={LogOut} label="Logout" collapsed={collapsed} link="/" onClick={handleNavItemClick} />
                     </ul>
                 </nav>
             </div>
