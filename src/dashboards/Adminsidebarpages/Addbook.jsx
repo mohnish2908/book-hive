@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const Addbook = () => {
-    const [formData, setFormData] = useState({
+    const initialFormData = {
         title: '',
         authorName: '',
         edition: '',
@@ -13,9 +13,12 @@ const Addbook = () => {
         totalPages: '',
         publicationYear: '',
         category: '',
-        available: false,
+        available: true,
+        count: 1,
         // publisherId: ''
-    });
+    };
+
+    const [formData, setFormData] = useState(initialFormData);
 
     const location = useLocation();
     const { data } = location.state || {};
@@ -27,7 +30,6 @@ const Addbook = () => {
             ...formData,
             [name]: type === 'checkbox' ? checked : value
         });
-
     };
 
     const handleSubmit = async (e) => {
@@ -45,6 +47,7 @@ const Addbook = () => {
             const result = await response.json();
             console.log(result);
             toast.success('Book added successfully');
+            setFormData(initialFormData); // Reset form data
         } catch (error) {
             console.error('Error:', error);
             toast.error('Error adding book');
@@ -54,7 +57,6 @@ const Addbook = () => {
     const [publishers, setPublishers] = useState([]);
     const [selectedPublisher, setSelectedPublisher] = useState('');
 
-
     useEffect(() => {
         const fetchPublishers = async () => {
             try {
@@ -62,7 +64,6 @@ const Addbook = () => {
                 const data = await response.json();
                 setPublishers(Array.isArray(data.data) ? data.data : []);
                 console.log(data.data);
-                // console.log('data found');
             } catch (error) {
                 console.error('Error fetching publishers:', error);
             }
@@ -79,7 +80,6 @@ const Addbook = () => {
             publisherId: publisherId,
         });
         setId(publisherId);
-        // console.log(id)
     };
 
     return (
@@ -186,16 +186,21 @@ const Addbook = () => {
                             style={{ color: 'black' }}
                         />
                     </div>
+
                     <div className='mb-4'>
-                        <label className='block text-sm font-medium mb-2'>Available:</label>
-                        <input
-                            type="checkbox"
-                            name="available"
-                            checked={formData.available}
+                        <label className='block text-sm font-medium mb-2'>Count:</label>
+                        <select
+                            name="count"
+                            value={formData.count}
                             onChange={handleChange}
-                            className='p-2 border border-gray-300 rounded-md'
+                            required
+                            className='w-full p-2 border border-gray-300 rounded-md'
                             style={{ color: 'black' }}
-                        />
+                        >
+                            {[...Array(10).keys()].map(i => (
+                                <option key={i + 1} value={i + 1}>{i + 1}</option>
+                            ))}
+                        </select>
                     </div>
 
                     <div className='mb-4'>
