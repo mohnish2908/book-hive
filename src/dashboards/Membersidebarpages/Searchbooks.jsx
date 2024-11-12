@@ -91,24 +91,43 @@ const Searchbooks = () => {
 
                 {book && (
                     <div className='mt-4 p-4 border border-gray-300 rounded text-white w-1/2'>
-                        <h2 className='text-xl  mb-2'>Tittle:{book.title}</h2>
-                        <p className='text-gray-400 mb-2'>Author Name: {book.authorName}</p>
-                        <p className='text-gray-400 mb-2'>Category: {book.category}</p>
-                        <p className='text-gray-400 mb-2'>Edition: {book.edition}</p>
-                        <p className='text-gray-400 mb-2'>ISBN: {book.isbn}</p>
-                        <p className='text-gray-400 mb-2'>Language: {book.language}</p>
-                        <p className='text-gray-400 mb-2'>Publication Year: {book.publicationYear}</p>
-                        <p className='text-gray-400 mb-2'>Pages: {book.totalPages}</p>
-                        <p className='text-gray-400 mb-2'>Publisher: {book.publisher.name}</p>
-                        <p className='text-gray-400 mb-2'>Available Books: {book.availableBook}</p>
-                        <p className='text-gray-400 mb-2'>Total Books: {book.totalBook}</p>
+                        <div className='grid grid-cols-2 gap-4'>
+                            <div>
+                                <h2 className='text-xl mb-2'>Title:</h2>
+                                <p className='text-gray-400 mb-2'>Author Name:</p>
+                                <p className='text-gray-400 mb-2'>Category:</p>
+                                <p className='text-gray-400 mb-2'>Edition:</p>
+                                <p className='text-gray-400 mb-2'>ISBN:</p>
+                                <p className='text-gray-400 mb-2'>Language:</p>
+                                <p className='text-gray-400 mb-2'>Publication Year:</p>
+                                <p className='text-gray-400 mb-2'>Pages:</p>
+                                <p className='text-gray-400 mb-2'>Publisher:</p>
+                                <p className='text-gray-400 mb-2'>Available Books:</p>
+                                <p className='text-gray-400 mb-2'>Total Books:</p>
+                            </div>
+                            <div>
+                                <h2 className='text-xl mb-2'>{book.title}</h2>
+                                <p className='text-gray-400 mb-2'>{book.authorName}</p>
+                                <p className='text-gray-400 mb-2'>{book.category}</p>
+                                <p className='text-gray-400 mb-2'>{book.edition}</p>
+                                <p className='text-gray-400 mb-2'>{book.isbn}</p>
+                                <p className='text-gray-400 mb-2'>{book.language}</p>
+                                <p className='text-gray-400 mb-2'>{book.publicationYear}</p>
+                                <p className='text-gray-400 mb-2'>{book.totalPages}</p>
+                                <p className='text-gray-400 mb-2'>{book.publisher.name}</p>
+                                <p className='text-gray-400 mb-2'>{book.availableBook}</p>
+                                <p className='text-gray-400 mb-2'>{book.totalBook}</p>
+                            </div>
+                        </div>
                         {book.availableBook > 0 ? (
-                            <button className='p-2 bg-yellow-300 border rounded'onClick={() => requestBookHandler(book.bookId)}>
-                                                    Request</button>
-                            ) : (
-                                    <p>Not available to Issue</p>
+                            <div className='flex justify-center mt-4'>
+                                <button className='p-2 bg-yellow-300 border rounded' onClick={() => requestBookHandler(book.bookId)}>
+                                    Request
+                                </button>
+                            </div>
+                        ) : (
+                            <p className='text-center mt-4'>Not available to Issue</p>
                         )}
-    
                         {loading && <Loader />}
                     </div>
                 )}
