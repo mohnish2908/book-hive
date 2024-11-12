@@ -34,7 +34,8 @@ const Searchbooks = () => {
             });
             const responseData = await response.json();
             console.log("responseData:", responseData);
-            toast.success('Book requested successfully');
+            if(responseData.error) toast.error('Book limit exceeded');
+            else toast.success('Book requested successfully');
             setBookName('');
             setBook(null);
         } catch (error) {
@@ -90,7 +91,7 @@ const Searchbooks = () => {
 
                 {book && (
                     <div className='mt-4 p-4 border border-gray-300 rounded text-white w-1/2'>
-                        <h2 className='text-xl font-bold mb-2'>{book.title}</h2>
+                        <h2 className='text-xl  mb-2'>Tittle:{book.title}</h2>
                         <p className='text-gray-400 mb-2'>Author Name: {book.authorName}</p>
                         <p className='text-gray-400 mb-2'>Category: {book.category}</p>
                         <p className='text-gray-400 mb-2'>Edition: {book.edition}</p>
@@ -98,10 +99,16 @@ const Searchbooks = () => {
                         <p className='text-gray-400 mb-2'>Language: {book.language}</p>
                         <p className='text-gray-400 mb-2'>Publication Year: {book.publicationYear}</p>
                         <p className='text-gray-400 mb-2'>Pages: {book.totalPages}</p>
-                        <p className='text-gray-400 mb-2'>Publisher ID: {book.publisher.name}</p>
-                        <button className='bg-brown-500 text-white p-2 rounded hover:bg-richblack-500' onClick={requestBookHandler}>
-                            Pre-request Book
-                        </button>
+                        <p className='text-gray-400 mb-2'>Publisher: {book.publisher.name}</p>
+                        <p className='text-gray-400 mb-2'>Available Books: {book.availableBook}</p>
+                        <p className='text-gray-400 mb-2'>Total Books: {book.totalBook}</p>
+                        {book.availableBook > 0 ? (
+                            <button className='p-2 bg-yellow-300 border rounded'onClick={() => requestBookHandler(book.bookId)}>
+                                                    Request</button>
+                            ) : (
+                                    <p>Not available to Issue</p>
+                        )}
+    
                         {loading && <Loader />}
                     </div>
                 )}
