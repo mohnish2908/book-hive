@@ -25,6 +25,8 @@ import Requestedbooks from './dashboards/Membersidebarpages/Requestedbooks';
 import Returnedbooks from './dashboards/Membersidebarpages/Returnedbooks';
 import Addpublisher from './dashboards/Adminsidebarpages/Addpublisher';
 import RequestIssue from './dashboards/Adminsidebarpages/RequestIssue';
+import GetDueRecord from './dashboards/Adminsidebarpages/GetDueRecord';
+import GetRecordWithDate from './dashboards/Adminsidebarpages/GetRecordWithDate';
 
 function App() {
   return (
@@ -54,6 +56,8 @@ function App() {
         <Route path='/admin/addpublisher' element={<Addpublisher/>}/>
         <Route path='/admin/requestissue' element={<RequestIssue/>}/>
         <Route path='/admin/showallpublishers' element={<Showallpublishers/>}/>
+        <Route path='/admin/getduerecord' element={<GetDueRecord/>}/>
+        <Route path='/admin/getrecordwithdate' element={<GetRecordWithDate/>}/>
       </Routes>
     </div>
   );
