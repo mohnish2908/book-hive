@@ -46,9 +46,10 @@ export default function AdminSidebar() {
                         <NavItem icon={UserCheck} label="Add Admin" collapsed={collapsed} link="/admin/addadmin" onClick={handleNavItemClick} />
                         <NavItem icon={Book} label="Issue Book" collapsed={collapsed} link="/admin/issuebook" onClick={handleNavItemClick} />
                         <NavItem icon={BookOpenCheck} label="Return Book" collapsed={collapsed} link="/admin/returnbook" onClick={handleNavItemClick} />
+                        <NavItem icon={BookOpenCheck} label="Show All Books" collapsed={collapsed} link="/admin/showallbooks" onClick={handleNavItemClick} />
                         <NavItem icon={Users} label="Get All Members" collapsed={collapsed} link="/admin/getallmembers" onClick={handleNavItemClick} />
                         <NavItem icon={BookOpenCheck} label="Get All Due Record" collapsed={collapsed} link="/admin/getduerecord" onClick={handleNavItemClick} />
-                        <NavItem icon={Edit} label="Edit Member Details" collapsed={collapsed} link="/admin/editmemberdetails" onClick={handleNavItemClick} />
+                        <NavItem icon={Edit} label="Get Member Details" collapsed={collapsed} link="/admin/editmemberdetails" onClick={handleNavItemClick} />
                         <NavItem icon={UserRoundPen} label="Add Publisher" collapsed={collapsed} link="/admin/addpublisher" onClick={handleNavItemClick} />
                         <NavItem icon={UsersRound} label="Show All Publishers" collapsed={collapsed} link="/admin/showallpublishers" onClick={handleNavItemClick} />
                         <NavItem icon={BookOpen} label="Request Issue" collapsed={collapsed} link="/admin/requestissue" onClick={handleNavItemClick} />

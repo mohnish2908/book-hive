@@ -16,6 +16,7 @@ import Editmemberdetails from './dashboards/Adminsidebarpages/Editmemberdetails'
 import Getallmembers from './dashboards/Adminsidebarpages/Getallmembers';
 import Issuebook from './dashboards/Adminsidebarpages/Issuebook';
 import Returnbook from './dashboards/Adminsidebarpages/Returnbook';
+import Showallbooks from './dashboards/Adminsidebarpages/Showallbooks';
 import Issuedbooks from './dashboards/Membersidebarpages/Issuedbooks';
 import Memberprofile from './dashboards/Membersidebarpages/Memberprofile';
 import Adminprofile from './dashboards/Adminsidebarpages/Adminprofile';
@@ -58,6 +59,7 @@ function App() {
         <Route path='/admin/showallpublishers' element={<Showallpublishers/>}/>
         <Route path='/admin/getduerecord' element={<GetDueRecord/>}/>
         <Route path='/admin/getrecordwithdate' element={<GetRecordWithDate/>}/>
+        <Route path='/admin/showallbooks' element={<Showallbooks/>}/>
       </Routes>
     </div>
   );

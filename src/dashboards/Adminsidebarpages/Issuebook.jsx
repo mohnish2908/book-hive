@@ -11,10 +11,17 @@ const Issuebook = () => {
   const [loading, setLoading] = useState(false);
   const location = useLocation();
   const { data } = location.state || {};
-  const adminId = data ? data.adminId : ''; // Ensure adminId is set safely
+  const adminId = data ? data.adminId : '';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Check if bookId and memberId are filled
+    if (!bookId || !memberId) {
+      toast.error('Please fill all fields');
+      return;
+    }
+
     try {
       setLoading(true);
       const url = `http://localhost:8080/admin/requestBookIssue`;
@@ -26,12 +33,13 @@ const Issuebook = () => {
         body: JSON.stringify({ bookId, memberId, adminId }),
       });
       const d = await response.json();
-      console.log(d.data);
+
       if(d.data === null) {
-        toast.error(d.error.message);
-      } else {
-        toast.success('Book Issued successfully');
+        toast.error('Book limit exceeded');
+      } {
+        toast.success('Book issued successfully');
       }
+    // toast.success('Book issued successfully');
     } catch (error) {
       console.error('Error:', error);
       toast.error('Error issuing book');
@@ -46,22 +54,12 @@ const Issuebook = () => {
     <div className='flex flex-row text-white'>
       <Adminsidebar data={data} />
       <div className='flex flex-col items-center justify-center w-full p-8 bg-gray-100'>
-      {loading ? (
-        <Loader />
-      ) : (
-
+        {loading ? (
+          <Loader />
+        ) : (
           <form onSubmit={handleSubmit} className='p-6 rounded-lg shadow-md w-full max-w-md'>
             <h2 className='text-2xl font-bold mb-4 text-richblack-500'>Issue Book</h2>
-            {/* Uncomment this section if needed */}
-            {/* <div className='mb-4 text-white'>
-              <label className='block text-gray-700'>Issue Date:</label>
-              <input
-                type='date'
-                value={issueDate}
-                onChange={(e) => setIssueDate(e.target.value)}
-                className='mt-1 p-2 w-full border rounded-md'
-              />
-            </div> */}
+
             <div className='mb-4'>
               <label className='block text-gray-700'>Book ID:</label>
               <input
@@ -69,6 +67,7 @@ const Issuebook = () => {
                 value={bookId}
                 onChange={(e) => setBookId(e.target.value)}
                 className='mt-1 p-2 w-full border rounded-md text-black'
+                required
               />
             </div>
             <div className='mb-4'>
@@ -78,14 +77,14 @@ const Issuebook = () => {
                 value={memberId}
                 onChange={(e) => setMemberId(e.target.value)}
                 className='mt-1 p-2 w-full border rounded-md text-black'
+                required
               />
             </div>
             <button type='submit' className='w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600'>
               Submit
             </button>
           </form>
-
-      )}
+        )}
       </div>
     </div>
   );

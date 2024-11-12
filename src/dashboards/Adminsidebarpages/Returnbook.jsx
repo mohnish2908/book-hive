@@ -16,6 +16,7 @@ const Returnbook = () => {
     console.log("bookId:",bookId);
     console.log("memberId:",memberId);
     try {
+        setMessage('');
       const url = `http://localhost:8080/admin/returnBook`;
       const response = await fetch(url, {
         method: 'POST',
@@ -55,6 +56,7 @@ const Returnbook = () => {
               value={bookId}
               onChange={(e) => setBookId(e.target.value)}
               className='mt-1 p-2 w-full border rounded-md text-black'
+              required
             />
           </div>
           <div className='mb-4 text-white'>
@@ -64,6 +66,7 @@ const Returnbook = () => {
               value={memberId}
               onChange={(e) => setMemberId(e.target.value)}
               className='mt-1 p-2 w-full border rounded-md text-black'
+              required
             />
           </div>
           <div>

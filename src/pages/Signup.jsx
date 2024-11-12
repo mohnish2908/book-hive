@@ -117,14 +117,18 @@ const SignupForm = () => {
                             id="contactNo"
                             name="contactNo"
                             value={formData.contactNo}
+                            maxLength={10}
                             onChange={handleChange}
                             style={{ color: 'black', marginLeft: '10px' }}
                         />
+                        {formData.contactNo && !/^\d{10}$/.test(formData.contactNo) && (
+                            <p style={{ color: 'red' }}>Please enter a valid 10-digit contact number.</p>
+                        )}
                     </div>
                     <div className='mt-4 mx-5 text-center'>
                         <p>{con}</p>
                     </div>
-                    <button type="submit" className='mt-3 translate-x-[140%] bg-richblack-500 text-black px-4 py-1'>Signup</button>
+                    <button type="submit" className='mt-3 translate-x-[140%] bg-richblack-500 text-black px-4 py-1' disabled={formData.contactNo.length < 10 || !/^\d{10}$/.test(formData.contactNo)}>Signup</button>
                 </form>
                 <div className="mt-4 text-center">
                     <p>Already a member? <a href="/login" className="text-blue-500">Login</a></p>

@@ -84,7 +84,7 @@ const Addbook = () => {
 
     return (
         <div className='text-white flex'>
-            <div>
+            <div className='sticky top-0 h-screen'>
                 <Adminsidebar data={data} />
             </div>
 

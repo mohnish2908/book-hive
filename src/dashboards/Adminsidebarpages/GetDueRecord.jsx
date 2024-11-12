@@ -22,6 +22,8 @@ const Getduerecord = () => {
         }
       });
       const d = await response.json();
+      console.log(d)
+      if(d.data.length===0) toast.warning('No due record found');
       setRecords(d.data || []);
     } catch (error) {
       console.error('Error:', error);
@@ -34,7 +36,7 @@ const Getduerecord = () => {
   const sendMail = async (record) => {
     try {
       setLoading(true);
-      
+
       const url = `http://localhost:8080/admin/dueMail`;
       const response = await fetch(url, {
         method: 'POST',
