@@ -63,7 +63,7 @@ function NavItem({ icon: Icon, label, collapsed, link, onClick }) {
                 onClick={() => onClick(link)}
             >
                 <Icon className="h-5 w-5" />
-                {!collapsed && <span className="ml-3">{label}</span>}
+                {!collapsed && <span className="ml-3 hover:text-yellow-100">{label}</span>}
             </button>
         </li>
     );

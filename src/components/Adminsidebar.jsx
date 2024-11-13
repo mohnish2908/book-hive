@@ -62,6 +62,23 @@ export default function AdminSidebar() {
     );
 }
 
+// function NavItem({ icon: Icon, label, collapsed, link, onClick }) {
+//     return (
+//         <li className="hover:bg-gray-700 rounded-md">
+//             <button
+//                 className={cn(
+//                     "flex items-center w-full text-white text-sm px-4 py-2 focus:outline-none",
+//                     collapsed ? "justify-center" : "justify-start"
+//                 )}
+//                 onClick={() => onClick(link)}
+//             >
+//                 <Icon className="h-5 w-5" />
+//                 {!collapsed && <span className="ml-3">{label}</span>}
+//             </button>
+//         </li>
+//     );
+// }
+
 function NavItem({ icon: Icon, label, collapsed, link, onClick }) {
     return (
         <li className="hover:bg-gray-700 rounded-md">
@@ -73,7 +90,7 @@ function NavItem({ icon: Icon, label, collapsed, link, onClick }) {
                 onClick={() => onClick(link)}
             >
                 <Icon className="h-5 w-5" />
-                {!collapsed && <span className="ml-3">{label}</span>}
+                {!collapsed && <span className="ml-3 hover:text-yellow-100">{label}</span>}
             </button>
         </li>
     );
