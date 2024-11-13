@@ -7,34 +7,23 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('member');
   const navigate = useNavigate();
-  const [e, sete] = useState('');
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      let response;
-      try {
-        response = await fetch(`http://localhost:8080/${role}/login`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ email, password }),
-        });
-      } catch (networkError) {
-        console.error('Network error:', networkError);
-        return;
-      }
-      const d = await response.json();
-      console.log(d);
-      if (d.data !== null) {
-        if (role === 'admin') {
-          navigate('/admin', { state: { data: d.data } });
-        } else if (role === 'member') {
-          navigate('/member', { state: { data: d.data } });
-        }
+      const response = await fetch(`http://localhost:8080/${role}/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await response.json();
+      if (data.data) {
+        navigate(`/${role}`, { state: { data: data.data } });
       } else {
-        sete(d.error.message);
+        setError(data.error.message);
       }
     } catch (error) {
       console.error('Error:', error);
@@ -44,49 +33,63 @@ const Login = () => {
   return (
     <div>
       <Navbar />
-      <div className='text-white flex flex-col justify-center items-center h-screen'>
-        <div className="h-1/2 w-1/3 border flex flex-col justify-center items-center">
-          <h1 className='text-3xl font-bold'>Login</h1>
-          <form onSubmit={handleSubmit}>
-            <div className='mt-7'>
-              <label htmlFor="email">Email:</label>
+      <div className="flex justify-center items-center min-h-screen bg-gray-100 text-white">
+        <div className="w-full max-w-md p-8 bg-gray-100 rounded-lg shadow-lg">
+          <h1 className="text-3xl font-bold text-center text-gray-700 mb-6">Login</h1>
+          <form onSubmit={handleSubmit} className="space-y-5">
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
               <input
                 type="email"
                 id="email"
                 value={email}
                 onChange={(e) => setUsername(e.target.value)}
-                style={{ color: 'black', marginLeft: '53px' }}
+                className="text-black w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                placeholder="Enter your email"
               />
             </div>
-            <div className='mt-2'>
-              <label htmlFor="password">Password:</label>
+            <div>
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">Password</label>
               <input
                 type="password"
                 id="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                style={{ color: 'black', marginLeft: '22px' }}
+                className="text-black w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                placeholder="Enter your password"
               />
             </div>
-            <div className='mt-2'>
-              <label htmlFor="role">Login as:</label>
+            <div>
+              <label htmlFor="role" className="block text-sm font-medium text-gray-700 mb-1">Login as</label>
               <select
                 id="role"
                 value={role}
                 onChange={(e) => setRole(e.target.value)}
-                style={{ color: 'black', marginLeft: '33px' }}
+                className="text-black w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               >
                 <option value="admin">Admin</option>
                 <option value="member">Member</option>
               </select>
             </div>
-            <button type="submit" className='mt-7 translate-x-[150%] bg-richblack-500 text-black px-4 py-1'>Login</button>
+            <button
+              type="submit"
+              className="w-full py-2 mt-4 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-md shadow focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            >
+              Login
+            </button>
           </form>
-          <div className='text-red mt-3'>
-            <p className="text-red-500">{e}</p>
-          </div>
-          <div className="mt-4 text-center">
-            <p>Not a member? <a href="/signup" className="text-blue-500">Signup</a></p>
+          {error && (
+            <div className="mt-4 text-red-500 text-sm text-center">
+              {error}
+            </div>
+          )}
+          <div className="mt-6 text-center text-sm text-gray-600">
+            <p>
+              Not a member?{' '}
+              <a href="/signup" className="text-blue-500 hover:underline">
+                Signup
+              </a>
+            </p>
           </div>
         </div>
       </div>
